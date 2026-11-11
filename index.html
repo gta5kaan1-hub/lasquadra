@@ -294,7 +294,7 @@
 
         .kits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
@@ -304,35 +304,33 @@
             border-radius: 15px;
             overflow: hidden;
             text-align: center;
-            padding: 30px;
+            padding-bottom: 20px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
-        .kit-badge-box {
+        .kit-img-container {
             width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            border: 2px solid var(--accent);
-            border-radius: 12px;
+            height: 450px;
+            background: #000;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
+            overflow: hidden;
         }
 
-        .kit-badge-box i {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
+        .kit-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s;
         }
 
-        .kit-badge-box span {
-            font-size: 1.2rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            color: #fff;
+        .kit-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .kit-info {
+            padding: 20px;
         }
 
         .kit-info h4 {
@@ -532,22 +530,20 @@
 
         <div class="kits-grid">
             <div class="kit-card">
-                <div class="kit-badge-box">
-                    <i class="fa-solid fa-shirt"></i>
-                    <span>ÖZMAK SPONSORLU</span>
+                <div class="kit-img-container">
+                    <img src="https://i.ibb.co/6R21w47/Ekran-g-r-nt-s-2026-11-11-204746.jpg" alt="İç Saha Forması Ön Yüz">
                 </div>
                 <div class="kit-info">
-                    <h4>İç Saha Forması</h4>
+                    <h4>İç Saha Forması (Ön Yüz)</h4>
                     <p>Özmak Sponsorlu Özel Altın Çizgili Bordo-Siyah Tasarım</p>
                 </div>
             </div>
             <div class="kit-card">
-                <div class="kit-badge-box">
-                    <i class="fa-solid fa-star"></i>
-                    <span>KAAN #19</span>
+                <div class="kit-img-container">
+                    <img src="https://i.ibb.co/3sX849m/Ekran-g-r-nt-s-2026-11-11-210255.jpg" alt="Kaan 19 Sırt Detayı">
                 </div>
                 <div class="kit-info">
-                    <h4>Özel Sırt Detayı</h4>
+                    <h4>İç Saha Forması (Arka Yüz)</h4>
                     <p>Kaan 19 - Şampiyonlar Ligi Detaylı Altın Baskı</p>
                 </div>
             </div>
