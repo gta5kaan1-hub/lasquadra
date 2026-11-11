@@ -30,7 +30,6 @@
             overflow-x: hidden;
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -105,7 +104,6 @@
             color: var(--accent);
         }
 
-        /* Hero Section */
         .hero {
             height: 90vh;
             background: linear-gradient(to bottom, rgba(11,11,14,0.4), var(--bg)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
@@ -153,7 +151,6 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
         }
 
-        /* Section Styling */
         section {
             padding: 80px 20px;
             max-width: 1200px;
@@ -182,7 +179,6 @@
             font-size: 0.95rem;
         }
 
-        /* Taktik Saha (2-1-3-1) */
         .tactics-container {
             background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -296,7 +292,6 @@
             margin-bottom: 5px;
         }
 
-        /* Kit / Forma Section */
         .kits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -309,34 +304,35 @@
             border-radius: 15px;
             overflow: hidden;
             text-align: center;
-            padding-bottom: 20px;
+            padding: 30px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
-        .kit-img-container {
+        .kit-badge-box {
             width: 100%;
-            height: 400px;
-            background: #101015;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            border: 2px solid var(--accent);
+            border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            color: var(--accent);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
         }
 
-        .kit-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s;
-            background: #000;
+        .kit-badge-box i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
         }
 
-        .kit-card:hover img {
-            transform: scale(1.03);
-        }
-
-        .kit-info {
-            padding: 20px;
+        .kit-badge-box span {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
         }
 
         .kit-info h4 {
@@ -350,7 +346,6 @@
             font-size: 0.9rem;
         }
 
-        /* Hakkımızda Bölümü */
         .about-card {
             background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -402,7 +397,6 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
         }
 
-        /* Footer */
         footer {
             background: var(--primary-dark);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
@@ -435,7 +429,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -455,7 +448,6 @@
         </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
             <h2>La Squadra'ya Hoş Geldiniz</h2>
@@ -464,7 +456,6 @@
         </div>
     </section>
 
-    <!-- Taktik Saha (2-1-3-1) -->
     <section id="taktik">
         <div class="section-title">
             <h3>Saha İçi <span>Diziliş</span></h3>
@@ -475,7 +466,6 @@
             <div class="pitch">
                 <div class="center-circle"></div>
 
-                <!-- Forvet (1) -->
                 <div class="row-line" style="margin-top: 10px;">
                     <div class="player-node">
                         <div class="p-num">#10</div>
@@ -483,7 +473,6 @@
                     </div>
                 </div>
 
-                <!-- Kanatlar ve Orta Saha (3) -->
                 <div class="row-line" style="align-items: center;">
                     <div class="player-node">
                         <div class="p-num">#19</div>
@@ -499,7 +488,6 @@
                     </div>
                 </div>
 
-                <!-- Defans (2) -->
                 <div class="row-line" style="align-items: center;">
                     <div class="player-node">
                         <div class="p-num">#18</div>
@@ -511,7 +499,6 @@
                     </div>
                 </div>
 
-                <!-- Kaleci (Boş) -->
                 <div class="row-line" style="margin-bottom: 10px;">
                     <div class="player-node" style="border-color: #666; background: rgba(50,50,50,0.8);">
                         <div class="p-num" style="color: #aaa;">BOŞ</div>
@@ -520,7 +507,6 @@
                 </div>
             </div>
 
-            <!-- Yedek Kulübesi -->
             <div class="substitutes-section">
                 <h4>Yedek Kulübesi</h4>
                 <div class="sub-list">
@@ -538,7 +524,6 @@
         </div>
     </section>
 
-    <!-- Formalar -->
     <section id="formalar">
         <div class="section-title">
             <h3>Kulüp <span>Formaları</span></h3>
@@ -547,8 +532,9 @@
 
         <div class="kits-grid">
             <div class="kit-card">
-                <div class="kit-img-container">
-                    <img src="https://i.ibb.co/6R21w47/Ekran-g-r-nt-s-2026-11-11-204746.jpg" alt="Özmak Sponsorlu Forma Ön Yüz">
+                <div class="kit-badge-box">
+                    <i class="fa-solid fa-shirt"></i>
+                    <span>ÖZMAK SPONSORLU</span>
                 </div>
                 <div class="kit-info">
                     <h4>İç Saha Forması</h4>
@@ -556,8 +542,9 @@
                 </div>
             </div>
             <div class="kit-card">
-                <div class="kit-img-container">
-                    <img src="https://i.ibb.co/3sX849m/Ekran-g-r-nt-s-2026-11-11-210255.jpg" alt="Kaan 19 Sırt Detayı">
+                <div class="kit-badge-box">
+                    <i class="fa-solid fa-star"></i>
+                    <span>KAAN #19</span>
                 </div>
                 <div class="kit-info">
                     <h4>Özel Sırt Detayı</h4>
@@ -567,7 +554,6 @@
         </div>
     </section>
 
-    <!-- Hakkımızda -->
     <section id="hakkimizda">
         <div class="section-title">
             <h3>Hikayemiz & <span>Hakkımızda</span></h3>
@@ -589,7 +575,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>La Squadra</span>. Tüm hakları saklıdır. İstanbul.</p>
     </footer>
