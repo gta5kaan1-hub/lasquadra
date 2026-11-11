@@ -89,14 +89,14 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--text);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
@@ -179,6 +179,50 @@
             font-size: 0.95rem;
         }
 
+        /* Match Card */
+        .match-card {
+            background: linear-gradient(135deg, var(--card-bg), var(--primary-dark));
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .match-badge {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .match-teams {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .match-teams span {
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .match-details {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 15px;
+        }
+
+        /* Tactics & Pitch */
         .tactics-container {
             background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -292,6 +336,74 @@
             margin-bottom: 5px;
         }
 
+        /* Stats Table */
+        .stats-table-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .stats-table th, .stats-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .stats-table th {
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .stats-table td {
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        .stats-table tr:hover {
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        /* Anthem & Motto */
+        .anthem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .anthem-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .anthem-card h4 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .anthem-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* Kits */
         .kits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -344,6 +456,7 @@
             font-size: 0.9rem;
         }
 
+        /* About */
         .about-card {
             background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -410,7 +523,7 @@
         }
 
         @media(max-width: 768px) {
-            .about-card {
+            .about-card, .anthem-grid {
                 grid-template-columns: 1fr;
             }
             .hero-content h2 {
@@ -438,8 +551,11 @@
             </a>
             <nav>
                 <ul>
+                    <li><a href="#mac">Maç Günü</a></li>
                     <li><a href="#taktik">Kadro</a></li>
+                    <li><a href="#istatistik">İstatistikler</a></li>
                     <li><a href="#formalar">Formalar</a></li>
+                    <li><a href="#ruhu">Marş & Söz</a></li>
                     <li><a href="#hakkimizda">Hakkımızda</a></li>
                 </ul>
             </nav>
@@ -450,10 +566,29 @@
         <div class="hero-content">
             <h2>La Squadra'ya Hoş Geldiniz</h2>
             <p>Zorluklara meydan okuyan, dostluk ve tutkuyla kurulan efsanevi kadro sahada!</p>
-            <a href="#taktik" class="btn-primary">Kadroya Göz At</a>
+            <a href="#mac" class="btn-primary">Maç Detayına Bak</a>
         </div>
     </section>
 
+    <!-- Yaklaşan Maç -->
+    <section id="mac">
+        <div class="section-title">
+            <h3>Sıradki <span>Maç</span></h3>
+            <p>Haftanın Heyecan Dolu Mücadelesi</p>
+        </div>
+
+        <div class="match-card">
+            <span class="match-badge">🗓️ Bu Cumartesi</span>
+            <div class="match-teams">
+                La Squadra <span>VS</span> Takım B
+            </div>
+            <div class="match-details">
+                <i class="fa-regular fa-clock"></i> Saat: 19:30 - 20:30
+            </div>
+        </div>
+    </section>
+
+    <!-- Taktik Kadro -->
     <section id="taktik">
         <div class="section-title">
             <h3>Saha İçi <span>Diziliş</span></h3>
@@ -522,6 +657,81 @@
         </div>
     </section>
 
+    <!-- İstatistikler Tablosu -->
+    <section id="istatistik">
+        <div class="section-title">
+            <h3>Oyuncu <span>İstatistikleri</span></h3>
+            <p>Gol ve Asist Krallığı Tablosu</p>
+        </div>
+
+        <div class="stats-table-container">
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Oyuncu</th>
+                        <th>Mevki / Rol</th>
+                        <th>Gol</th>
+                        <th>Asist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Arabinho</strong></td>
+                        <td>Yedek / Hücum</td>
+                        <td>5</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hacı</strong></td>
+                        <td>Forvet (#10)</td>
+                        <td>4</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kaan</strong></td>
+                        <td>Sol Kanat (#19)</td>
+                        <td>0</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Emir</strong></td>
+                        <td>Defans (#17)</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yerliçay (Çay)</strong></td>
+                        <td>Sağ Kanat & Kaptan (#24)</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Kulüp Marşı & Sözü -->
+    <section id="ruhu">
+        <div class="section-title">
+            <h3>La Squadra <span>Ruhu</span></h3>
+            <p>Kulüp Marşımız ve Unutulmaz Sözümüz</p>
+        </div>
+
+        <div class="anthem-grid">
+            <div class="anthem-card">
+                <h4>Kulüp Marşı</h4>
+                <p>"Bordo-siyah asil kan, sahada fırtına gibi Esteban!<br>
+                Hacı'nın vuruşu, Kaan'ın pası, yıkılır yollar önümüzdeki aslı!<br>
+                Zorluklar bize dur demez, La Squadra asla baş eğmez!"</p>
+            </div>
+            <div class="anthem-card">
+                <h4>Kulüp Sözü</h4>
+                <p>"Biz sahaya sadece ayaklarımızla değil, kalbimizi, dostluğumuzu ve hayallerimizi koyarız. Kazanmak ya da kaybetmek geçici, La Squadra kardeşliği ebedidir!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formalar -->
     <section id="formalar">
         <div class="section-title">
             <h3>Kulüp <span>Formaları</span></h3>
@@ -550,6 +760,7 @@
         </div>
     </section>
 
+    <!-- Hakkımızda -->
     <section id="hakkimizda">
         <div class="section-title">
             <h3>Hikayemiz & <span>Hakkımızda</span></h3>
