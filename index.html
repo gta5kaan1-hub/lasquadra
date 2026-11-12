@@ -94,19 +94,70 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 18px;
+            gap: 15px;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--text);
             font-weight: 600;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             transition: color 0.3s;
         }
 
         nav ul li a:hover {
             color: var(--accent);
+        }
+
+        /* Stadyum Canlı LED Kayan Bant */
+        .stadium-led-ticker {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            border-top: 3px solid var(--accent);
+            border-bottom: 3px solid var(--primary);
+            height: 42px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 -5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .led-title {
+            background: var(--primary);
+            color: var(--accent);
+            padding: 0 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            z-index: 2;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+        }
+
+        .led-content {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker-scroll 25s linear infinite;
+            font-weight: 800;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .led-content span {
+            margin-right: 50px;
+            color: #ffdf00;
+        }
+
+        @keyframes ticker-scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         /* Müzik Çalar Widget Alanı */
@@ -347,6 +398,135 @@
             font-size: 0.68rem;
             color: var(--text-muted);
             text-transform: uppercase;
+        }
+
+        /* KAHİN ÇARKI & MAÇ TAHMİN ARENASI */
+        .prediction-container {
+            background: linear-gradient(135deg, #14141c, #0d0407);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .prediction-box {
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .pred-input-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pred-input-group input {
+            background: #181216;
+            border: 2px solid var(--accent);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            outline: none;
+            width: 200px;
+        }
+
+        .pred-input-group select {
+            background: #181216;
+            border: 2px solid var(--accent);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .prediction-list {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            padding-top: 15px;
+        }
+
+        .pred-item {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .pred-item span {
+            color: var(--accent);
+        }
+
+        /* SOHBET / CANAVAR MODU ALANI */
+        .chat-container {
+            background: linear-gradient(135deg, #121218, #1a080d);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 900px;
+            margin: 0 auto 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        .chat-box {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 20px;
+            height: 280px;
+            overflow-y: auto;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-msg {
+            background: rgba(74, 14, 23, 0.4);
+            border-left: 4px solid var(--accent);
+            padding: 10px 15px;
+            border-radius: 0 10px 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .chat-msg .sender {
+            color: var(--accent);
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .chat-input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .chat-input-group input {
+            flex: 1;
+            background: #181216;
+            border: 2px solid var(--accent);
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            outline: none;
         }
 
         /* Saha Tasarımı */
@@ -899,7 +1079,7 @@
             font-size: 1.3rem;
         }
 
-        /* YENİLENEN ULTRA ŞIK KULÜP FORMALARI VİTRİN ALANI */
+        /* KULÜP FORMALARI VİTRİN ALANI */
         .kits-container {
             background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(12, 12, 18, 0.98));
             border: 2px solid var(--accent);
@@ -1338,7 +1518,7 @@
             background: var(--primary-dark);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             text-align: center;
-            padding: 30px 20px;
+            padding: 30px 20px 60px 20px; /* Alttaki LED bant için boşluk bırakıldı */
             color: var(--text-muted);
             font-size: 0.9rem;
         }
@@ -1375,6 +1555,18 @@
 </head>
 <body>
 
+    <!-- Stadyum Canlı LED Kayan Bant (Canavar Modu) -->
+    <div class="stadium-led-ticker">
+        <div class="led-title">LA SQUADRA CANLI LED</div>
+        <div class="led-content">
+            <span>⚡ Kaan yine 90'a taktı!</span>
+            <span>🔥 Hacı ceza sahasında fırtına estiriyor!</span>
+            <span>⚽ Şampiyonluk yolu bizimdir!</span>
+            <span>💪 Forklift Canavarı Ebu sahada basmadık yer bırakmıyor!</span>
+            <span>🏆 La Squadra Arena'ya hoş geldiniz!</span>
+        </div>
+    </div>
+
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -1389,12 +1581,12 @@
                     <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#oyun">3D Penaltı</a></li>
+                    <li><a href="#sohbet">Canavar Odası</a></li>
+                    <li><a href="#kahin">Kahin Çarkı</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
                     <li><a href="#istatistik">İstatistik</a></li>
                     <li><a href="#formalar">Formalar</a></li>
-                    <li><a href="#ruhu">Marş</a></li>
-                    <li><a href="#hakkimizda">Hakkımızda</a></li>
                 </ul>
             </nav>
         </div>
@@ -1418,7 +1610,7 @@
         </div>
         <div class="music-controls">
             <button class="music-btn" onclick="playMusic()"><i class="fa-solid fa-play"></i> Çal</button>
-            <button class="music-btn" onclick="pauseMusic()"><i class="fa-solid fa-pause"></i> Durdur</button>
+            <button class="music-btn" onclick="pauseMusic()"><i class="fa-solid fa-pause"></i> Durdurdır</button>
         </div>
     </div>
 
@@ -1657,6 +1849,56 @@
         </div>
     </section>
 
+    <!-- LA SQUADRA CANAVAR ODASI (CANLI SOHBET) -->
+    <section id="sohbet">
+        <div class="chat-container">
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h3>Canavar <span>Odası (Sohbet)</span></h3>
+                <p>Takım Arkadaşlarınla Anlık Mesajlaş, Stadyum Coşkusunu Paylaş!</p>
+            </div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="chat-msg"><span class="sender">Hacı:</span> Beyler cumartesi günü maçı alıyoruz, hazırlıklar tam gaz! 🔥</div>
+                <div class="chat-msg"><span class="sender">Kaan:</span> 99'luk Trossard gücüyle sol kanadı otoyol yapacağım rahat olun ⚡</div>
+                <div class="chat-msg"><span class="sender">Ebu:</span> Forklift motorları ısındı, orta sahadan geçit yok! 🚜</div>
+            </div>
+
+            <div class="chat-input-group">
+                <input type="text" id="chatName" placeholder="Adın / Lakabın..." style="max-width: 160px;">
+                <input type="text" id="chatText" placeholder="Mesajını yaz ve enter'a bas..." onkeypress="handleChatKey(event)">
+                <button class="shoot-btn" onclick="sendChatMessage()">Gönder</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- KAHİN ÇARKI & MAÇ TAHMİN ARENASI -->
+    <section id="kahin">
+        <div class="prediction-container">
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h3>Haftanın Maç <span>Kahini (Tahmin Çarkı)</span></h3>
+                <p>Maçın Skorunu Tahmin Et, Altın Harflerle Onur Listesine Yazıl!</p>
+            </div>
+
+            <div class="prediction-box">
+                <div class="pred-input-group">
+                    <input type="text" id="predUser" placeholder="Adın / Soyadın">
+                    <select id="predScore">
+                        <option value="La Squadra 3 - 0 Rakip">La Squadra 3 - 0 Rakip</option>
+                        <option value="La Squadra 4 - 1 Rakip">La Squadra 4 - 1 Rakip</option>
+                        <option value="La Squadra 5 - 2 Rakip">La Squadra 5 - 2 Rakip</option>
+                        <option value="La Squadra 6 - 0 Rakip (Fırtına)">La Squadra 6 - 0 Rakip</option>
+                    </select>
+                    <button class="shoot-btn" onclick="submitPrediction()">Tahmini Kilitle 🎯</button>
+                </div>
+
+                <div class="prediction-list" id="predictionList">
+                    <div class="pred-item"><span>Hacı:</span> La Squadra 5 - 2 Rakip (Tahmin Kaydedildi)</div>
+                    <div class="pred-item"><span>Kaan:</span> La Squadra 6 - 0 Rakip (Tahmin Kaydedildi)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Ballon d'Or Gala Sıralaması -->
     <section id="ballon">
         <div class="ballon-container">
@@ -1776,7 +2018,7 @@
         </div>
     </section>
 
-    <!-- KULÜP FORMALARI (RESİMLERE DOKUNMADAN ULTRA ŞIK VİTRİN) -->
+    <!-- KULÜP FORMALARI (RESİMLERE DOKUNMADAN VİTRİN) -->
     <section id="formalar">
         <div class="section-title">
             <h3>KULÜP <span>FORMALARI</span></h3>
@@ -1785,7 +2027,6 @@
 
         <div class="kits-container">
             <div class="kits-grid">
-                <!-- 1. Form Kartı (Ön Yüz) -->
                 <div class="kit-card">
                     <div class="kit-badge-tag">⭐ ÖZMAK SPONSORLU</div>
                     <div class="kit-img-container">
@@ -1797,7 +2038,6 @@
                     </div>
                 </div>
 
-                <!-- 2. Form Kartı (Arka Yüz) -->
                 <div class="kit-card">
                     <div class="kit-badge-tag">🔥 ŞAMPİYONLAR LİGİ</div>
                     <div class="kit-img-container">
@@ -1867,6 +2107,45 @@
             document.getElementById('spotName').innerText = name;
             document.getElementById('spotRole').innerText = role;
             document.getElementById('spotDesc').innerText = desc;
+        }
+
+        // Canavar Odası / Sohbet Fonksiyonları
+        function sendChatMessage() {
+            const nameInput = document.getElementById('chatName');
+            const textInput = document.getElementById('chatText');
+            const chatBox = document.getElementById('chatBox');
+
+            const name = nameInput.value.trim() || "Misafir";
+            const text = textInput.value.trim();
+
+            if (text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'chat-msg';
+                msgDiv.innerHTML = `<span class="sender">${name}:</span> ${text}`;
+                chatBox.appendChild(msgDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                textInput.value = "";
+            }
+        }
+
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Kahin Çarkı Tahmin Fonksiyonu
+        function submitPrediction() {
+            const user = document.getElementById('predUser').value.trim() || "Kahin";
+            const score = document.getElementById('predScore').value;
+            const list = document.getElementById('predictionList');
+
+            const item = document.createElement('div');
+            item.className = 'pred-item';
+            item.innerHTML = `<span>⭐ ${user}:</span> ${score} (Onur Listesine Eklendi!)`;
+            list.prepend(item);
+
+            document.getElementById('predUser').value = "";
         }
 
         let goals3D = 0;
