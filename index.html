@@ -617,7 +617,7 @@
             font-style: italic;
         }
 
-        /* FIFA 27 Tarzı Özel 99'luk Kart Modalı (Sadece Kaan'a Özel) */
+        /* FIFA 27 Tarzı Özel 99'luk Kart Modalı */
         .trossard-modal {
             display: none;
             position: fixed;
@@ -752,7 +752,6 @@
             padding: 20px;
         }
 
-        /* Arkada taraftarlar ve ışıklar */
         .stadium-crowd {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 110px;
@@ -790,7 +789,6 @@
             margin-top: 4px;
         }
 
-        /* 3D Derinlikli Kale */
         .goal-3d {
             width: 60%;
             height: 150px;
@@ -806,7 +804,6 @@
             align-items: flex-end;
         }
 
-        /* Hareketli Kaleci */
         .keeper-3d {
             position: absolute;
             top: 35px;
@@ -834,7 +831,6 @@
             font-size: 0.65rem; font-weight: 900; color: #fff;
         }
 
-        /* Hedef Seçim Alanları */
         .target-zone {
             width: 33.3%;
             height: 100%;
@@ -847,7 +843,6 @@
             background: rgba(212, 175, 55, 0.25);
         }
 
-        /* Top Spotu */
         .ball-3d {
             width: 38px;
             height: 38px;
@@ -902,6 +897,102 @@
         .game-scoreboard span {
             color: var(--accent);
             font-size: 1.3rem;
+        }
+
+        /* YENİLENEN ULTRA ŞIK KULÜP FORMALARI VİTRİN ALANI */
+        .kits-container {
+            background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(12, 12, 18, 0.98));
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            padding: 50px 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .kit-card {
+            background: linear-gradient(145deg, #181216, #0e0709);
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 24px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7), inset 0 0 20px rgba(212, 175, 55, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .kit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #fff;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .kit-badge-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(74, 14, 23, 0.9);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 900;
+            padding: 5px 12px;
+            border-radius: 20px;
+            z-index: 10;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .kit-img-container {
+            width: 100%;
+            height: 480px;
+            background: #050507;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .kit-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .kit-card:hover .kit-img-container img {
+            transform: scale(1.06);
+        }
+
+        .kit-info {
+            padding: 25px 20px;
+            background: linear-gradient(to bottom, #120508, #1a080d);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .kit-info h4 {
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        .kit-info p {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
         /* Diğer bölümler */
@@ -1183,51 +1274,6 @@
             font-style: italic;
         }
 
-        .kits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .kit-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 20px;
-        }
-
-        .kit-img-container {
-            width: 100%;
-            height: 500px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .kit-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .kit-info {
-            padding: 20px;
-        }
-
-        .kit-info h4 {
-            font-size: 1.3rem;
-            margin-bottom: 8px;
-            color: var(--accent);
-        }
-
-        .kit-info p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
         .about-card {
             background: var(--card-bg);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -1485,7 +1531,7 @@
                     </div>
                 </div>
 
-                <!-- Orta Saha & Kanatlar (KAAN BURADA - Tıklandığında Özel 99 Kart Açılır) -->
+                <!-- Orta Saha & Kanatlar -->
                 <div class="row-line">
                     <div class="player-node active" onclick="openFifaCard()" style="border-color: #fff; box-shadow: 0 0 25px rgba(212,175,55,0.8);">
                         <div class="jersey-badge">#19</div>
@@ -1583,13 +1629,11 @@
             </div>
 
             <div class="stadium-3d-screen" id="stadiumScreen">
-                <!-- Arka Taraftar & Tribün Atmosferi -->
                 <div class="stadium-crowd">
                     <div class="crowd-lights">⚡ LA SQUADRA ARENA - CANLI TARAFTAR COŞKUSU ⚡</div>
                     <div class="crowd-banner">OLA LA LA LA SQUADRA! 🔥</div>
                 </div>
 
-                <!-- 3D Kale ve Hareketli Kaleci -->
                 <div class="goal-3d">
                     <div class="keeper-3d" id="keeperNode">
                         <div class="keeper-head"></div>
@@ -1604,7 +1648,6 @@
                     Sol köşe, orta veya sağ köşeden birini seç ve şutunu gönder! ⚽
                 </div>
 
-                <!-- Top -->
                 <div class="ball-3d" id="ball3D">⚽</div>
             </div>
 
@@ -1733,21 +1776,38 @@
         </div>
     </section>
 
-    <!-- Formalar -->
+    <!-- KULÜP FORMALARI (RESİMLERE DOKUNMADAN ULTRA ŞIK VİTRİN) -->
     <section id="formalar">
         <div class="section-title">
-            <h3>Kulüp <span>Formaları</span></h3>
+            <h3>KULÜP <span>FORMALARI</span></h3>
             <p>Özmak Sponsorluğundaki Efsanevi Tasarımlarımız</p>
         </div>
 
-        <div class="kits-grid">
-            <div class="kit-card">
-                <div class="kit-img-container"><img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20204746.png" alt="Ön Yüz"></div>
-                <div class="kit-info"><h4>İç Saha Forması (Ön Yüz)</h4><p>Özmak Sponsorlu Özel Altın Çizgili Bordo-Siyah Tasarım</p></div>
-            </div>
-            <div class="kit-card">
-                <div class="kit-img-container"><img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20210255.png" alt="Arka Yüz"></div>
-                <div class="kit-info"><h4>İç Saha Forması (Arka Yüz)</h4><p>Kaan 19 - Şampiyonlar Ligi Detaylı Altın Baskı</p></div>
+        <div class="kits-container">
+            <div class="kits-grid">
+                <!-- 1. Form Kartı (Ön Yüz) -->
+                <div class="kit-card">
+                    <div class="kit-badge-tag">⭐ ÖZMAK SPONSORLU</div>
+                    <div class="kit-img-container">
+                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20204746.png" alt="İç Saha Forması Ön Yüz">
+                    </div>
+                    <div class="kit-info">
+                        <h4>İç Saha Forması (Ön Yüz)</h4>
+                        <p>Özmak Sponsorlu Özel Altın Çizgili Bordo-Siyah Tasarım</p>
+                    </div>
+                </div>
+
+                <!-- 2. Form Kartı (Arka Yüz) -->
+                <div class="kit-card">
+                    <div class="kit-badge-tag">🔥 ŞAMPİYONLAR LİGİ</div>
+                    <div class="kit-img-container">
+                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20210255.png" alt="Kaan 19 Sırt Detayı">
+                    </div>
+                    <div class="kit-info">
+                        <h4>İç Saha Forması (Arka Yüz)</h4>
+                        <p>Kaan 19 - Şampiyonlar Ligi Detaylı Altın Baskı</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1793,7 +1853,6 @@
             document.getElementById('music-status').style.color = 'var(--accent)';
         }
 
-        // FIFA 27 Kart Modalı Fonksiyonları
         function openFifaCard() {
             document.getElementById('trossardModal').style.display = 'flex';
         }
@@ -1810,7 +1869,6 @@
             document.getElementById('spotDesc').innerText = desc;
         }
 
-        // 3D Stadyum Penaltı Oyunu Mantığı
         let goals3D = 0;
         let misses3D = 0;
 
@@ -1819,16 +1877,13 @@
             const keeper = document.getElementById('keeperNode');
             const msg = document.getElementById('stadiumMsg');
 
-            // Kalecinin rastgele hamlesi (left, center, right)
             const corners = ['left', 'center', 'right'];
             const keeperChoice = corners[Math.floor(Math.random() * corners.length)];
 
-            // Kaleciyi hareket ettir
             if (keeperChoice === 'left') keeper.style.left = "28%";
             else if (keeperChoice === 'right') keeper.style.left = "72%";
             else keeper.style.left = "50%";
 
-            // Topun 3D şut hareketi
             if (choice === 'left') {
                 ball.style.transform = "translate(-130px, -230px) scale(0.6)";
             } else if (choice === 'right') {
@@ -1850,7 +1905,6 @@
                     msg.style.color = "#4ade80";
                 }
 
-                // Pozisyonu sıfırla
                 setTimeout(() => {
                     ball.style.transform = "translate(0, 0) scale(1)";
                     keeper.style.left = "50%";
@@ -1868,7 +1922,6 @@
             document.getElementById('stadiumMsg').innerHTML = "Oyun sıfırlandı. Yeni şutunu gönder! ⚽";
         }
 
-        // Geri Sayım Sayaçları
         function getNextSaturday() {
             const now = new Date();
             const resultDate = new Date(now);
