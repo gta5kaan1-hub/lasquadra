@@ -707,7 +707,7 @@
 
         .ballon-header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             position: relative;
             z-index: 2;
         }
@@ -746,6 +746,39 @@
             color: var(--text-muted);
             font-size: 1rem;
             margin-top: 8px;
+        }
+
+        /* 1 Aylık Geri Sayım Alanı */
+        .ballon-countdown {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .b-count-box {
+            background: rgba(7, 7, 9, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            padding: 10px 15px;
+            min-width: 75px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .b-count-box .number {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .b-count-box .label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .vote-grid {
@@ -836,6 +869,7 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            white-space: nowrap;
         }
 
         .vote-btn:hover {
@@ -1386,7 +1420,7 @@
         </div>
     </section>
 
-    <!-- Ayın Oyuncusu / Ballon d'Or Oylaması (Ultra Lüks Tasarım) -->
+    <!-- Ayın Oyuncusu / Ballon d'Or Oylaması (Sıfırlanmış & 1 Aylık Geri Sayımlı) -->
     <section id="ballon">
         <div class="ballon-container">
             <div class="ballon-header">
@@ -1397,15 +1431,35 @@
                 <p>Ballon d'Or Ödülü İçin Efsanene Oyunu Ver, Zirveye Taşı!</p>
             </div>
 
+            <!-- 1 Aylık Geri Sayım Sayacı (Bu Cumartesi Maçından Başlayan) -->
+            <div class="ballon-countdown" id="ballonCountdown">
+                <div class="b-count-box">
+                    <div class="number" id="b-days">00</div>
+                    <div class="label">Gün</div>
+                </div>
+                <div class="b-count-box">
+                    <div class="number" id="b-hours">00</div>
+                    <div class="label">Saat</div>
+                </div>
+                <div class="b-count-box">
+                    <div class="number" id="b-minutes">00</div>
+                    <div class="label">Dakika</div>
+                </div>
+                <div class="b-count-box">
+                    <div class="number" id="b-seconds">00</div>
+                    <div class="label">Saniye</div>
+                </div>
+            </div>
+
             <div class="vote-grid">
                 <!-- Hacı -->
                 <div class="vote-card" id="card-haci">
                     <h5>Hacı (Saba)</h5>
                     <span>Forvet (#10)</span>
                     <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="bar-haci" style="width: 42%;"></div>
+                        <div class="progress-bar-fill" id="bar-haci" style="width: 0%;"></div>
                     </div>
-                    <button class="vote-btn" onclick="votePlayer('haci')">Oy Ver (<span id="count-haci">42</span>)</button>
+                    <button class="vote-btn" onclick="votePlayer('haci')">OY VER (<span id="count-haci">0</span>)</button>
                 </div>
 
                 <!-- Kaan -->
@@ -1413,9 +1467,9 @@
                     <h5>Kaan (Atom Karınca)</h5>
                     <span>Sol Kanat (#19)</span>
                     <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="bar-kaan" style="width: 35%;"></div>
+                        <div class="progress-bar-fill" id="bar-kaan" style="width: 0%;"></div>
                     </div>
-                    <button class="vote-btn" onclick="votePlayer('kaan')">Oy Ver (<span id="count-kaan">35</span>)</button>
+                    <button class="vote-btn" onclick="votePlayer('kaan')">OY VER (<span id="count-kaan">0</span>)</button>
                 </div>
 
                 <!-- Çay -->
@@ -1423,9 +1477,9 @@
                     <h5>Çay (Leroy Sané)</h5>
                     <span>Sağ Kanat (#24)</span>
                     <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="bar-cay" style="width: 28%;"></div>
+                        <div class="progress-bar-fill" id="bar-cay" style="width: 0%;"></div>
                     </div>
-                    <button class="vote-btn" onclick="votePlayer('cay')">Oy Ver (<span id="count-cay">28</span>)</button>
+                    <button class="vote-btn" onclick="votePlayer('cay')">OY VER (<span id="count-cay">0</span>)</button>
                 </div>
 
                 <!-- Ebu -->
@@ -1433,9 +1487,9 @@
                     <h5>Ebu (İsmail Yüksek)</h5>
                     <span>Orta Saha (#7)</span>
                     <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="bar-ebu" style="width: 22%;"></div>
+                        <div class="progress-bar-fill" id="bar-ebu" style="width: 0%;"></div>
                     </div>
-                    <button class="vote-btn" onclick="votePlayer('ebu')">Oy Ver (<span id="count-ebu">22</span>)</button>
+                    <button class="vote-btn" onclick="votePlayer('ebu')">OY VER (<span id="count-ebu">0</span>)</button>
                 </div>
             </div>
             <div class="voted-msg" id="votedMsg">🏆 Oylaman başarıyla kaydedildi! Altın Top ödülü sahibine gidiyor!</div>
@@ -1651,10 +1705,17 @@
             const ebu = parseInt(document.getElementById('count-ebu').innerText);
             const total = haci + kaan + cay + ebu;
 
-            document.getElementById('bar-haci').style.width = Math.round((haci / total) * 100) + '%';
-            document.getElementById('bar-kaan').style.width = Math.round((kaan / total) * 100) + '%';
-            document.getElementById('bar-cay').style.width = Math.round((cay / total) * 100) + '%';
-            document.getElementById('bar-ebu').style.width = Math.round((ebu / total) * 100) + '%';
+            if (total === 0) {
+                document.getElementById('bar-haci').style.width = '0%';
+                document.getElementById('bar-kaan').style.width = '0%';
+                document.getElementById('bar-cay').style.width = '0%';
+                document.getElementById('bar-ebu').style.width = '0%';
+            } else {
+                document.getElementById('bar-haci').style.width = Math.round((haci / total) * 100) + '%';
+                document.getElementById('bar-kaan').style.width = Math.round((kaan / total) * 100) + '%';
+                document.getElementById('bar-cay').style.width = Math.round((cay / total) * 100) + '%';
+                document.getElementById('bar-ebu').style.width = Math.round((ebu / total) * 100) + '%';
+            }
         }
 
         function showPlayerInfo(element, num, name, role, desc) {
@@ -1679,6 +1740,9 @@
 
         const matchDate = getNextSaturday();
         const matchDate2 = new Date(2026, 10, 22, 20, 0, 0).getTime();
+        
+        // Ballon d'Or 1 aylık sayaç: Bu cumartesi maç saatinden itibaren tam 30 gün
+        const ballonDeadline = new Date(matchDate.getTime() + (30 * 24 * 60 * 60 * 1000)).getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -1713,6 +1777,20 @@
                 document.getElementById("hours2").innerText = String(hours2).padStart(2, '0');
                 document.getElementById("minutes2").innerText = String(minutes2).padStart(2, '0');
                 document.getElementById("seconds2").innerText = String(seconds2).padStart(2, '0');
+            }
+
+            // Ballon d'Or 1 Aylık Sayaç
+            const bDistance = ballonDeadline - now;
+            if (bDistance > 0) {
+                const bDays = Math.floor(bDistance / (1000 * 60 * 60 * 24));
+                const bHours = Math.floor((bDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const bMinutes = Math.floor((bDistance % (1000 * 60 * 60)) / (1000 * 60));
+                const bSeconds = Math.floor((bDistance % (1000 * 60)) / 1000);
+
+                document.getElementById("b-days").innerText = String(bDays).padStart(2, '0');
+                document.getElementById("b-hours").innerText = String(bHours).padStart(2, '0');
+                document.getElementById("b-minutes").innerText = String(bMinutes).padStart(2, '0');
+                document.getElementById("b-seconds").innerText = String(bSeconds).padStart(2, '0');
             }
         }
 
