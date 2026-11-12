@@ -185,32 +185,54 @@
         }
 
         /* Match Card & Countdown */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            max-width: 1150px;
+            margin: 0 auto 50px;
+        }
+
         .match-card {
             background: linear-gradient(135deg, var(--card-bg), var(--primary-dark));
             border: 2px solid var(--accent);
             border-radius: 20px;
-            padding: 35px;
+            padding: 35px 25px;
             text-align: center;
-            max-width: 650px;
-            margin: 0 auto 50px;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .match-badge {
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             display: block;
+        }
+
+        .match-venue {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin: 0 auto 18px;
         }
 
         .match-teams {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            font-size: 1.5rem;
+            gap: 10px;
+            font-size: 1.35rem;
             font-weight: 900;
             margin-bottom: 20px;
         }
@@ -231,7 +253,7 @@
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin-top: 15px;
         }
 
@@ -239,18 +261,18 @@
             background: rgba(7, 7, 9, 0.8);
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 10px;
-            padding: 10px 15px;
-            min-width: 75px;
+            padding: 10px 12px;
+            min-width: 68px;
         }
 
         .countdown-box .number {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 900;
             color: var(--accent);
         }
 
         .countdown-box .label {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: var(--text-muted);
             text-transform: uppercase;
         }
@@ -644,7 +666,7 @@
         }
 
         @media(max-width: 768px) {
-            .about-card, .anthem-grid {
+            .about-card, .anthem-grid, .matches-grid {
                 grid-template-columns: 1fr;
             }
             .hero-content h2 {
@@ -672,7 +694,7 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="#mac">Maç</a></li>
+                    <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
                     <li><a href="#istatistik">İstatistik</a></li>
@@ -688,41 +710,82 @@
         <div class="hero-content">
             <h2>La Squadra'ya Hoş Geldiniz</h2>
             <p>Zorluklara meydan okuyan, dostluk ve tutkuyla kurulan efsanevi kadro sahada!</p>
-            <a href="#mac" class="btn-primary">Maç Detayına Bak</a>
+            <a href="#mac" class="btn-primary">Maç Detaylarına Bak</a>
         </div>
     </section>
 
-    <!-- Yaklaşan Maç & Geri Sayım -->
+    <!-- Yaklaşan Maçlar & Geri Sayım -->
     <section id="mac">
         <div class="section-title">
-            <h3>Sıradaki <span>Maç</span></h3>
-            <p>Haftanın Heyecan Dolu Mücadelesi</p>
+            <h3>Sıradaki <span>Maçlar</span></h3>
+            <p>Haftanın Heyecan Dolu Mücadeleleri</p>
         </div>
 
-        <div class="match-card">
-            <span class="match-badge">🗓️ Bu Cumartesi • 19:30 - 20:30</span>
-            <div class="match-teams">
-                La Squadra <span>VS</span> Takım B
+        <div class="matches-grid">
+            <!-- 1. Maç Kartı -->
+            <div class="match-card">
+                <div>
+                    <span class="match-badge">🗓️ Bu Cumartesi • 19:30 - 20:30</span>
+                    <div class="match-teams">
+                        La Squadra <span>VS</span> Takım B
+                    </div>
+                </div>
+                <div>
+                    <div class="match-details">
+                        Maçın Başlamasına Kalan Süre:
+                    </div>
+                    <div class="countdown-container" id="countdown">
+                        <div class="countdown-box">
+                            <div class="number" id="days">00</div>
+                            <div class="label">Gün</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="hours">00</div>
+                            <div class="label">Saat</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="minutes">00</div>
+                            <div class="label">Dakika</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="seconds">00</div>
+                            <div class="label">Saniye</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="match-details">
-                Maçın Başlamasına Kalan Süre:
-            </div>
-            <div class="countdown-container" id="countdown">
-                <div class="countdown-box">
-                    <div class="number" id="days">00</div>
-                    <div class="label">Gün</div>
+
+            <!-- 2. Maç Kartı (22 Kasım Pazar) -->
+            <div class="match-card">
+                <div>
+                    <span class="match-badge">🗓️ 22 Kasım Pazar • 20:00 - 21:00</span>
+                    <div class="match-venue">📍 Sinop Spor Halı Sahası</div>
+                    <div class="match-teams">
+                        La Squadra <span>VS</span> Çekmece Saha Grubu
+                    </div>
                 </div>
-                <div class="countdown-box">
-                    <div class="number" id="hours">00</div>
-                    <div class="label">Saat</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="number" id="minutes">00</div>
-                    <div class="label">Dakika</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="number" id="seconds">00</div>
-                    <div class="label">Saniye</div>
+                <div>
+                    <div class="match-details">
+                        Maçın Başlamasına Kalan Süre:
+                    </div>
+                    <div class="countdown-container" id="countdown2">
+                        <div class="countdown-box">
+                            <div class="number" id="days2">00</div>
+                            <div class="label">Gün</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="hours2">00</div>
+                            <div class="label">Saat</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="minutes2">00</div>
+                            <div class="label">Dakika</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="number" id="seconds2">00</div>
+                            <div class="label">Saniye</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -976,25 +1039,42 @@
         }
 
         const matchDate = getNextSaturday();
+        const matchDate2 = new Date(2026, 10, 22, 20, 0, 0).getTime(); // 22 Kasım 2026 20:00
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = matchDate - now;
 
+            // 1. Maç Sayacı
+            const distance = matchDate - now;
             if (distance < 0) {
                 document.getElementById("countdown").innerHTML = "<div style='color: var(--accent); font-weight:700; font-size:1.1rem;'>MAÇ VAKTİ GELDİ! SAHAYA ÇIKIYORUZ! ⚽🔥</div>";
-                return;
+            } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // 2. Maç Sayacı (22 Kasım Pazar)
+            const distance2 = matchDate2 - now;
+            if (distance2 < 0) {
+                document.getElementById("countdown2").innerHTML = "<div style='color: var(--accent); font-weight:700; font-size:1.1rem;'>MAÇ VAKTİ GELDİ! SAHAYA ÇIKIYORUZ! ⚽🔥</div>";
+            } else {
+                const days2 = Math.floor(distance2 / (1000 * 60 * 60 * 24));
+                const hours2 = Math.floor((distance2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes2 = Math.floor((distance2 % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds2 = Math.floor((distance2 % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = String(days).padStart(2, '0');
-            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
-            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+                document.getElementById("days2").innerText = String(days2).padStart(2, '0');
+                document.getElementById("hours2").innerText = String(hours2).padStart(2, '0');
+                document.getElementById("minutes2").innerText = String(minutes2).padStart(2, '0');
+                document.getElementById("seconds2").innerText = String(seconds2).padStart(2, '0');
+            }
         }
 
         setInterval(updateCountdown, 1000);
