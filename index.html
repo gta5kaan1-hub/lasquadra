@@ -337,7 +337,7 @@
             background: #fff;
         }
 
-        /* IŞIL IŞIL HAREKETLİ HERO (GİRİŞ VİTRİNİ) ALANI */
+        /* IŞIL IŞIL HAREKETLİ HERO VİTRİNİ */
         .hero {
             min-height: 82vh;
             background: 
@@ -352,7 +352,6 @@
             overflow: hidden;
         }
 
-        /* Arka plan nefes alan stadyum ışığı */
         .hero::before {
             content: '';
             position: absolute;
@@ -372,7 +371,6 @@
             100% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
         }
 
-        /* Havada uçuşan altın kıvılcımlar */
         .sparkles-layer {
             position: absolute;
             inset: 0;
@@ -381,9 +379,7 @@
                 radial-gradient(2px 2px at 35% 75%, #FFF8DC, transparent),
                 radial-gradient(3px 3px at 55% 20%, #D4AF37, transparent),
                 radial-gradient(2px 2px at 75% 65%, #FFD700, transparent),
-                radial-gradient(2.5px 2.5px at 88% 30%, #FFF, transparent),
-                radial-gradient(2px 2px at 25% 85%, #D4AF37, transparent),
-                radial-gradient(3px 3px at 68% 85%, #FFD700, transparent);
+                radial-gradient(2.5px 2.5px at 88% 30%, #FFF, transparent);
             background-size: 400px 400px;
             animation: float-sparkles 14s linear infinite;
             opacity: 0.8;
@@ -425,7 +421,6 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
         }
 
-        /* Işıl Işıl Akan Altın Başlık */
         .hero-content h2 {
             font-size: 4rem;
             font-weight: 900;
@@ -463,7 +458,6 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
-        /* Işık Yansımalı Parlak Buton */
         .btn-primary {
             position: relative;
             display: inline-flex;
@@ -628,7 +622,7 @@
             text-transform: uppercase;
         }
 
-        /* KAHİN ÇARKI (SERBEST SKOR YAZMA ALANI) */
+        /* YENİ KAHİN ÇARKI (CASINO / ÇARKIFELEK SİSTEMİ) */
         .prediction-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
             border: 2px solid var(--accent);
@@ -648,6 +642,30 @@
             margin-top: 20px;
         }
 
+        .wheel-display-box {
+            background: linear-gradient(145deg, #181216, #0c0507);
+            border: 3px solid var(--accent);
+            border-radius: 18px;
+            padding: 22px;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 20px 0;
+            box-shadow: inset 0 0 25px rgba(212,175,55,0.25), 0 5px 20px rgba(0,0,0,0.6);
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(212,175,55,0.6);
+            transition: transform 0.15s ease;
+        }
+
+        .wheel-spin-active {
+            animation: wheel-pulse 0.2s infinite alternate;
+        }
+
+        @keyframes wheel-pulse {
+            0% { transform: scale(1); border-color: var(--accent); }
+            100% { transform: scale(1.02); border-color: #fff; box-shadow: inset 0 0 35px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.8); }
+        }
+
         .pred-input-group {
             display: flex;
             gap: 12px;
@@ -661,34 +679,13 @@
             background: #181216;
             border: 2px solid var(--accent);
             color: #fff;
-            padding: 10px 15px;
-            border-radius: 10px;
+            padding: 12px 18px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             outline: none;
-        }
-
-        .score-inputs-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #181216;
-            border: 2px solid var(--accent);
-            padding: 6px 12px;
-            border-radius: 10px;
-        }
-
-        .score-inputs-wrapper span {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 800;
-        }
-
-        .score-input {
-            width: 45px !important;
-            text-align: center;
-            border: 1px solid rgba(212,175,55,0.4) !important;
-            padding: 6px !important;
+            width: 260px;
+            max-width: 100%;
         }
 
         .prediction-list {
@@ -702,12 +699,12 @@
 
         .pred-item {
             background: rgba(212, 175, 55, 0.08);
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 12px 18px;
+            border-radius: 10px;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
         }
 
@@ -950,7 +947,9 @@
 
         .shoot-btn {
             background: linear-gradient(135deg, var(--accent), #b8860b); color: var(--primary-dark);
-            border: none; padding: 12px 24px; font-weight: 900; font-size: 0.95rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
+            border: none; padding: 12px 28px; font-weight: 900; font-size: 0.95rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+            transition: transform 0.2s, background 0.2s;
         }
         .shoot-btn:hover { transform: scale(1.05); background: #fff; }
 
@@ -1367,30 +1366,26 @@
         </div>
     </section>
 
-    <!-- KAHİN ÇARKI & MAÇ TAHMİN ARENASI (SERBEST SKOR YAZMA) -->
+    <!-- 4. FİKİR: KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) -->
     <section id="kahin">
         <div class="prediction-container">
             <div class="section-title" style="margin-bottom: 20px;">
-                <h3>Haftanın Maç <span>Kahini (Tahmin Çarkı)</span></h3>
-                <p>Maçın Skorunu Kendin Yaz, Altın Harflerle Onur Listesine Yazıl!</p>
+                <h3>Haftanın Maç <span>Kahini (Çarkıfelek Arenası)</span></h3>
+                <p>Adını Yaz, Çarkı Çevir, Şanslı Skorunla Onur Listesine Adını Yazdır!</p>
             </div>
 
             <div class="prediction-box">
                 <div class="pred-input-group">
-                    <input type="text" id="predUser" placeholder="Adın / Soyadın">
-                    
-                    <div class="score-inputs-wrapper">
-                        <span>La Squadra</span>
-                        <input type="number" id="scoreTeam" class="score-input" value="5" min="0" max="20">
-                        <span>-</span>
-                        <input type="number" id="scoreOpponent" class="score-input" value="0" min="0" max="20">
-                        <span>Rakip</span>
-                    </div>
-
-                    <button class="shoot-btn" onclick="submitPrediction()">Tahmini Kilitle 🎯</button>
+                    <input type="text" id="predUser" placeholder="Adın / Soyadın (Örn: Kaan)">
+                    <button class="shoot-btn" onclick="spinScoreWheel()">🎡 Çarkı Çevir & Skoru Belirle</button>
                 </div>
 
-                <!-- Tertemiz tahmin listesi alanı -->
+                <!-- Çarkın Dönerken Skor Gösterdiği Işıklı Ekran -->
+                <div class="wheel-display-box" id="wheelDisplay">
+                    La Squadra ? - ? Rakip
+                </div>
+
+                <!-- Onur Listesi / Tahminler -->
                 <div class="prediction-list" id="predictionList"></div>
             </div>
         </div>
@@ -1641,19 +1636,47 @@
             }
         }
 
-        // Kahin Çarkı Serbest Skor Tahmin Fonksiyonu
-        function submitPrediction() {
-            const user = document.getElementById('predUser').value.trim() || "Kahin";
-            const teamScore = document.getElementById('scoreTeam').value || "0";
-            const opponentScore = document.getElementById('scoreOpponent').value || "0";
-            const list = document.getElementById('predictionList');
+        // 4. FİKİR: KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİN SİSTEMİ)
+        function spinScoreWheel() {
+            const user = document.getElementById('predUser').value.trim();
+            if (!user) {
+                alert("Lütfen önce adını veya lakabını yaz çarsı!");
+                return;
+            }
 
-            const item = document.createElement('div');
-            item.className = 'pred-item';
-            item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${teamScore} - ${opponentScore} Rakip (Tahmin Kaydedildi!)`;
-            list.prepend(item);
+            const wheelBox = document.getElementById('wheelDisplay');
+            wheelBox.classList.add('wheel-spin-active');
 
-            document.getElementById('predUser').value = "";
+            const possibleScores = [
+                {t: 3, o: 0}, {t: 4, o: 1}, {t: 5, o: 2}, 
+                {t: 6, o: 0}, {t: 7, o: 1}, {t: 5, o: 0}, {t: 8, o: 2}
+            ];
+
+            let counter = 0;
+            const spinInterval = setInterval(() => {
+                const randT = Math.floor(Math.random() * 9);
+                const randO = Math.floor(Math.random() * 4);
+                wheelBox.innerText = `La Squadra ${randT} - ${randO} Rakip`;
+                counter++;
+
+                if (counter > 15) {
+                    clearInterval(spinInterval);
+                    wheelBox.classList.remove('wheel-spin-active');
+
+                    // Sonuç belirleme
+                    const finalScore = possibleScores[Math.floor(Math.random() * possibleScores.length)];
+                    wheelBox.innerText = `🎉 ${user} Tahmini: La Squadra ${finalScore.t} - ${finalScore.o} Rakip`;
+
+                    // Listeye ekle
+                    const list = document.getElementById('predictionList');
+                    const item = document.createElement('div');
+                    item.className = 'pred-item';
+                    item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${finalScore.t} - ${finalScore.o} Rakip (Çarktan Kilitlendi!)`;
+                    list.prepend(item);
+
+                    document.getElementById('predUser').value = "";
+                }
+            }, 90);
         }
 
         let goals3D = 0;
