@@ -36,75 +36,6 @@
             position: relative;
         }
 
-        /* Ekranı Kaplayan Stadyum Meşale (Pyro) Işık Efekti Katmanı */
-        #pyroScreenFlash {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 69, 0, 0.35) 0%, rgba(74, 14, 23, 0.5) 60%, transparent 90%);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 998;
-            transition: opacity 0.4s ease-in-out;
-        }
-
-        #pyroScreenFlash.active {
-            opacity: 1;
-            animation: pyro-pulse 1.2s infinite alternate;
-        }
-
-        @keyframes pyro-pulse {
-            0% { opacity: 0.75; }
-            100% { opacity: 1; }
-        }
-
-        /* Sol ve Sağ Alt Köşe Taraftar Meşalesi (Pyro) Butonları */
-        .pyro-torch {
-            position: fixed;
-            bottom: 60px;
-            width: 58px;
-            height: 58px;
-            background: linear-gradient(135deg, #ff4500, #4A0E17);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #fff;
-            cursor: pointer;
-            z-index: 1001;
-            box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pyro-torch.left { left: 20px; }
-        .pyro-torch.right { right: 90px; }
-
-        .pyro-torch:hover {
-            transform: scale(1.15) rotate(10deg);
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
-        }
-
-        .pyro-tooltip {
-            position: absolute;
-            bottom: 70px;
-            background: var(--primary);
-            color: var(--accent);
-            font-size: 0.7rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
-            border: 1px solid var(--accent);
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .pyro-torch:hover .pyro-tooltip {
-            opacity: 1;
-        }
-
         header {
             position: fixed;
             top: 0;
@@ -232,6 +163,122 @@
             100% { transform: translateX(-100%); }
         }
 
+        /* SOL ALT KÖŞE ÇARKIFELEK WIDGET BUTONU VE PANELİ */
+        .wheel-widget-btn {
+            position: fixed;
+            bottom: 60px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--primary), #8b1e2f);
+            color: var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.45);
+            z-index: 1001;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--accent);
+            animation: wheel-btn-spin 12s linear infinite;
+        }
+
+        @keyframes wheel-btn-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .wheel-widget-btn:hover {
+            animation-play-state: paused;
+            transform: scale(1.12);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+        }
+
+        .wheel-popup-container {
+            position: fixed;
+            bottom: 135px;
+            left: 20px;
+            width: 370px;
+            max-width: 90vw;
+            background: linear-gradient(135deg, #161216, #0c0507);
+            border: 2px solid var(--accent);
+            border-radius: 22px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.25);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: pop-up 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .wheel-popup-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .wheel-popup-body input {
+            background: #181216;
+            border: 1.5px solid var(--accent);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            outline: none;
+            width: 100%;
+        }
+
+        .mini-wheel-display {
+            background: linear-gradient(145deg, #1e1418, #0a0406);
+            border: 2px solid var(--accent);
+            border-radius: 14px;
+            padding: 16px 10px;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 0 0 12px rgba(212,175,55,0.6);
+            transition: transform 0.15s ease;
+        }
+
+        .wheel-spin-active {
+            animation: wheel-pulse 0.18s infinite alternate;
+        }
+
+        @keyframes wheel-pulse {
+            0% { transform: scale(1); border-color: var(--accent); }
+            100% { transform: scale(1.03); border-color: #fff; box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+        }
+
+        .mini-pred-list {
+            max-height: 130px;
+            overflow-y: auto;
+            text-align: left;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .pred-item {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #eee;
+        }
+
+        .pred-item span {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
         /* Sağ Alt Köşe Kayan Sohbet Widget Butonu ve Paneli */
         .chat-widget-btn {
             position: fixed;
@@ -284,7 +331,7 @@
             color: var(--accent);
             padding: 15px;
             font-weight: 900;
-            font-size: 1rem;
+            font-size: 0.95rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -301,17 +348,32 @@
             background: none;
             border: none;
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
+            line-height: 1;
         }
 
         .chat-popup-body {
-            height: 280px;
+            height: 260px;
             overflow-y: auto;
             padding: 15px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+        }
+
+        .chat-msg {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .chat-msg .sender {
+            color: var(--accent);
+            font-weight: 800;
+            margin-right: 4px;
         }
 
         .chat-popup-footer {
@@ -692,94 +754,137 @@
             text-transform: uppercase;
         }
 
-        /* KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) */
-        .prediction-container {
-            background: linear-gradient(135deg, #14141c, #0d0407);
+        /* YENİ EKSTRA 1: MAÇIN ADAMI (MOTM) CANLI TARAFTAR OYLAMASI */
+        .motm-container {
+            background: linear-gradient(135deg, #14141c, #1a080d);
             border: 2px solid var(--accent);
             border-radius: 28px;
             padding: 40px 30px;
-            max-width: 900px;
-            margin: 0 auto 50px;
-            text-align: center;
+            max-width: 950px;
+            margin: 0 auto;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
-        .prediction-box {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(212,175,55,0.3);
-            border-radius: 20px;
-            padding: 25px;
-            margin-top: 20px;
+        .motm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        .wheel-display-box {
-            background: linear-gradient(145deg, #181216, #0c0507);
-            border: 3px solid var(--accent);
+        .motm-card {
+            background: rgba(12, 12, 18, 0.95);
+            border: 1.5px solid rgba(212, 175, 55, 0.35);
             border-radius: 18px;
-            padding: 22px;
-            font-size: 2rem;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .motm-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .motm-card h4 {
+            font-size: 1.2rem;
             font-weight: 900;
             color: #fff;
-            margin: 20px 0;
-            box-shadow: inset 0 0 25px rgba(212,175,55,0.25), 0 5px 20px rgba(0,0,0,0.6);
-            letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(212,175,55,0.6);
-            transition: transform 0.15s ease;
+            margin-bottom: 4px;
         }
 
-        .wheel-spin-active {
-            animation: wheel-pulse 0.2s infinite alternate;
-        }
-
-        @keyframes wheel-pulse {
-            0% { transform: scale(1); border-color: var(--accent); }
-            100% { transform: scale(1.02); border-color: #fff; box-shadow: inset 0 0 35px rgba(255,215,0,0.5), 0 0 30px rgba(255,215,0,0.8); }
-        }
-
-        .pred-input-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .pred-input-group input {
-            background: #181216;
-            border: 2px solid var(--accent);
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            outline: none;
-            width: 260px;
-            max-width: 100%;
-        }
-
-        .prediction-list {
-            margin-top: 20px;
-            text-align: left;
-            max-height: 200px;
-            overflow-y: auto;
-            border-top: 1px solid rgba(212,175,55,0.2);
-            padding-top: 15px;
-        }
-
-        .pred-item {
-            background: rgba(212, 175, 55, 0.08);
-            padding: 12px 18px;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .pred-item span {
+        .motm-card span {
+            display: block;
+            font-size: 0.78rem;
             color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .motm-bar-bg {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .motm-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.5s ease;
+        }
+
+        .motm-pct {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .motm-vote-btn {
+            background: linear-gradient(135deg, var(--accent), #b8860b);
+            color: var(--primary-dark);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .motm-vote-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+        /* YENİ EKSTRA 2: CANLI İNTERAKTİF VAR KONTROL MONİTÖRÜ */
+        .var-container {
+            background: linear-gradient(135deg, #0d0d12, #18060a);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+        }
+
+        .var-screen {
+            background: #050507;
+            border: 3px solid #333;
+            border-radius: 18px;
+            padding: 30px 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .var-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            font-weight: 900;
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 6px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .var-result-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1px;
         }
 
         /* Saha Tasarımı */
@@ -1017,7 +1122,7 @@
 
         .shoot-btn {
             background: linear-gradient(135deg, var(--accent), #b8860b); color: var(--primary-dark);
-            border: none; padding: 12px 28px; font-weight: 900; font-size: 0.95rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
+            border: none; padding: 12px 24px; font-weight: 900; font-size: 0.9rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
             box-shadow: 0 5px 20px rgba(212,175,55,0.4);
             transition: transform 0.2s, background 0.2s;
         }
@@ -1108,28 +1213,6 @@
 </head>
 <body>
 
-    <!-- Ekranı Kaplayan Stadyum Meşale (Pyro) Işık Efekti Katmanı -->
-    <div id="pyroScreenFlash"></div>
-
-    <!-- Sol ve Sağ Alt Köşe İnteraktif Taraftar Meşalesi (Pyro) Butonları -->
-    <div class="pyro-torch left" 
-         onmouseenter="togglePyro(true)" 
-         onmouseleave="togglePyro(false)" 
-         onclick="togglePyroClick()" 
-         title="Meşaleyi Yak!">
-        🔥
-        <div class="pyro-tooltip">Meşale Yak!</div>
-    </div>
-
-    <div class="pyro-torch right" 
-         onmouseenter="togglePyro(true)" 
-         onmouseleave="togglePyro(false)" 
-         onclick="togglePyroClick()" 
-         title="Meşaleyi Yak!">
-        🔥
-        <div class="pyro-tooltip">Deplasman Havası</div>
-    </div>
-
     <!-- Stadyum Canlı LED Kayan Bant -->
     <div class="stadium-led-ticker">
         <div class="led-title">LA SQUADRA CANLI LED</div>
@@ -1139,6 +1222,33 @@
             <span>⚽ LA SQUADRA ASLA BAŞ EĞMEZ!</span>
             <span>💪 FORKLİFT CANAVARI EBU SAHADA!</span>
             <span>🏆 HACI & KAAN İLE ZAFER BİZİMDİR!</span>
+        </div>
+    </div>
+
+    <!-- SOL ALT KÖŞE ÇARKIFELEK WIDGET BUTONU -->
+    <div class="wheel-widget-btn" onclick="toggleWheelPopup()" title="Kahin Çarkıfeleğini Aç">
+        <i class="fa-solid fa-dharmachakra"></i>
+    </div>
+
+    <!-- SOL ALT KÖŞE AÇILIR ÇARKIFELEK PANELİ -->
+    <div class="wheel-popup-container" id="wheelPopupBox">
+        <div class="chat-popup-header">
+            <span>🎡 KAHİN ÇARKIFELEĞİ</span>
+            <button class="chat-popup-close" onclick="toggleWheelPopup()">&times;</button>
+        </div>
+        <div class="wheel-popup-body">
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Adını yaz, çarkı çevir, şanslı skorunla onur listesine gir!</p>
+            <input type="text" id="predUser" placeholder="Adın / Soyadın (Örn: Kaan)">
+            <button class="shoot-btn" onclick="spinScoreWheel()" style="width: 100%;">🎡 Çarkı Çevir & Skoru Belirle</button>
+            
+            <div class="mini-wheel-display" id="wheelDisplay">
+                La Squadra ? - ? Rakip
+            </div>
+
+            <div class="mini-pred-list" id="predictionList">
+                <div class="pred-item"><span>⭐ Kaan:</span> La Squadra 5 - 1 Rakip</div>
+                <div class="pred-item"><span>⭐ Hacı:</span> La Squadra 4 - 0 Rakip</div>
+            </div>
         </div>
     </div>
 
@@ -1184,10 +1294,10 @@
                     <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#oyun">3D Penaltı</a></li>
-                    <li><a href="#kahin">Kahin Çarkı</a></li>
+                    <li><a href="#motm">Maçın Adamı</a></li>
+                    <li><a href="#var">VAR Odası</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
-                    <li><a href="#istatistik">İstatistik</a></li>
                     <li><a href="#formalar">Formalar</a></li>
                 </ul>
             </nav>
@@ -1452,34 +1562,70 @@
                 <div class="ball-3d" id="ball3D">⚽</div>
             </div>
 
-            <div class="game-controls">
+            <div class="game-controls" style="margin-top: 20px;">
                 <button class="shoot-btn" onclick="reset3DGame()">Skoru Sıfırla</button>
             </div>
         </div>
     </section>
 
-    <!-- KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) -->
-    <section id="kahin">
-        <div class="prediction-container">
+    <!-- YENİ EKSTRA 1: MAÇIN ADAMI (MOTM) CANLI TARAFTAR OYLAMASI -->
+    <section id="motm">
+        <div class="motm-container">
+            <div class="section-title" style="margin-bottom: 30px;">
+                <h3>Maçın Adamı <span>Canlı Oylama</span></h3>
+                <p>Sence haftanın yıldızı kim? Oyunu ver, zirveyi belirle!</p>
+            </div>
+
+            <div class="motm-grid">
+                <div class="motm-card">
+                    <h4>KAAN</h4>
+                    <span>Trossard 99 (#19)</span>
+                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-kaan" style="width: 40%;"></div></div>
+                    <div class="motm-pct" id="pct-kaan">%40</div>
+                    <button class="motm-vote-btn" onclick="voteMotm('kaan')">Oy Ver ⭐</button>
+                </div>
+
+                <div class="motm-card">
+                    <h4>HACI</h4>
+                    <span>Saba (#10)</span>
+                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-haci" style="width: 25%;"></div></div>
+                    <div class="motm-pct" id="pct-haci">%25</div>
+                    <button class="motm-vote-btn" onclick="voteMotm('haci')">Oy Ver ⭐</button>
+                </div>
+
+                <div class="motm-card">
+                    <h4>EBU</h4>
+                    <span>Forklift Canavarı (#7)</span>
+                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-ebu" style="width: 20%;"></div></div>
+                    <div class="motm-pct" id="pct-ebu">%20</div>
+                    <button class="motm-vote-btn" onclick="voteMotm('ebu')">Oy Ver ⭐</button>
+                </div>
+
+                <div class="motm-card">
+                    <h4>ÇAY (C)</h4>
+                    <span>Leroy Sané (#24)</span>
+                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-cay" style="width: 15%;"></div></div>
+                    <div class="motm-pct" id="pct-cay">%15</div>
+                    <button class="motm-vote-btn" onclick="voteMotm('cay')">Oy Ver ⭐</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YENİ EKSTRA 2: CANLI VAR KONTROL MONİTÖRÜ -->
+    <section id="var">
+        <div class="var-container">
             <div class="section-title" style="margin-bottom: 20px;">
-                <h3>Haftanın Maç <span>Kahini (Çarkıfelek Arenası)</span></h3>
-                <p>Adını Yaz, Çarkı Çevir, Şanslı Skorunla Onur Listesine Adını Yazdır!</p>
+                <h3>La Squadra <span>VAR Kontrol Odası</span></h3>
+                <p>Tartışmalı pozisyon mu var? Hakemi VAR monitörüne çağır!</p>
             </div>
 
-            <div class="prediction-box">
-                <div class="pred-input-group">
-                    <input type="text" id="predUser" placeholder="Adın / Soyadın (Örn: Kaan)">
-                    <button class="shoot-btn" onclick="spinScoreWheel()">🎡 Çarkı Çevir & Skoru Belirle</button>
-                </div>
-
-                <!-- Çarkın Dönerken Skor Gösterdiği Işıklı Ekran -->
-                <div class="wheel-display-box" id="wheelDisplay">
-                    La Squadra ? - ? Rakip
-                </div>
-
-                <!-- Onur Listesi / Tahminler -->
-                <div class="prediction-list" id="predictionList"></div>
+            <div class="var-screen">
+                <div class="var-badge">📺 VAR CHECK IN PROGRESS</div>
+                <div class="var-result-text" id="varResult">Pozisyon İncelemesi Bekleniyor...</div>
             </div>
+
+            <button class="shoot-btn" onclick="triggerVarCheck()">🔍 VAR Monitörünü İncele</button>
         </div>
     </section>
 
@@ -1677,21 +1823,6 @@
             document.getElementById('music-status').style.color = 'var(--accent)';
         }
 
-        // İnteraktif Taraftar Meşalesi (Pyro) Efekti Fonksiyonları
-        function togglePyro(status) {
-            const flash = document.getElementById('pyroScreenFlash');
-            if (status) {
-                flash.classList.add('active');
-            } else {
-                flash.classList.remove('active');
-            }
-        }
-
-        function togglePyroClick() {
-            const flash = document.getElementById('pyroScreenFlash');
-            flash.classList.toggle('active');
-        }
-
         function openFifaCard() {
             document.getElementById('trossardModal').style.display = 'flex';
         }
@@ -1708,17 +1839,59 @@
             document.getElementById('spotDesc').innerText = desc;
         }
 
+        // SOL ALT KÖŞE ÇARKIFELEK WIDGET AÇ/KAPAT
+        function toggleWheelPopup() {
+            const box = document.getElementById('wheelPopupBox');
+            box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        // Çarkıfelek Çevirme Fonksiyonu
+        function spinScoreWheel() {
+            const user = document.getElementById('predUser').value.trim();
+            if (!user) {
+                alert("Lütfen önce adını veya lakabını yaz!");
+                return;
+            }
+
+            const wheelBox = document.getElementById('wheelDisplay');
+            wheelBox.classList.add('wheel-spin-active');
+
+            const possibleScores = [
+                {t: 3, o: 0}, {t: 4, o: 1}, {t: 5, o: 2}, 
+                {t: 6, o: 0}, {t: 7, o: 1}, {t: 5, o: 0}, {t: 8, o: 2}
+            ];
+
+            let counter = 0;
+            const spinInterval = setInterval(() => {
+                const randT = Math.floor(Math.random() * 9);
+                const randO = Math.floor(Math.random() * 4);
+                wheelBox.innerText = `La Squadra ${randT} - ${randO} Rakip`;
+                counter++;
+
+                if (counter > 15) {
+                    clearInterval(spinInterval);
+                    wheelBox.classList.remove('wheel-spin-active');
+
+                    const finalScore = possibleScores[Math.floor(Math.random() * possibleScores.length)];
+                    wheelBox.innerText = `🎉 La Squadra ${finalScore.t} - ${finalScore.o} Rakip`;
+
+                    const list = document.getElementById('predictionList');
+                    const item = document.createElement('div');
+                    item.className = 'pred-item';
+                    item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${finalScore.t} - ${finalScore.o} Rakip`;
+                    list.prepend(item);
+
+                    document.getElementById('predUser').value = "";
+                }
+            }, 85);
+        }
+
         // Sağ Alt Köşe Sohbet Widget Aç/Kapat
         function toggleChatPopup() {
             const box = document.getElementById('chatPopupBox');
-            if (box.style.display === 'flex') {
-                box.style.display = 'none';
-            } else {
-                box.style.display = 'flex';
-            }
+            box.style.display = (box.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // Canavar Odası / Sohbet Fonksiyonları
         function sendChatMessage() {
             const nameInput = document.getElementById('chatName');
             const textInput = document.getElementById('chatText');
@@ -1743,45 +1916,36 @@
             }
         }
 
-        // Kahin Çarkı (Çarkıfelek Arenası)
-        function spinScoreWheel() {
-            const user = document.getElementById('predUser').value.trim();
-            if (!user) {
-                alert("Lütfen önce adını veya lakabını yaz çarsı!");
-                return;
+        // Maçın Adamı (MOTM) Canlı Oylama Fonksiyonu
+        const motmVotes = { kaan: 8, haci: 5, ebu: 4, cay: 3 };
+        function voteMotm(player) {
+            motmVotes[player]++;
+            const total = motmVotes.kaan + motmVotes.haci + motmVotes.ebu + motmVotes.cay;
+            for (const key in motmVotes) {
+                const pct = Math.round((motmVotes[key] / total) * 100);
+                document.getElementById('bar-' + key).style.width = pct + '%';
+                document.getElementById('pct-' + key).innerText = '%' + pct;
             }
+        }
 
-            const wheelBox = document.getElementById('wheelDisplay');
-            wheelBox.classList.add('wheel-spin-active');
-
-            const possibleScores = [
-                {t: 3, o: 0}, {t: 4, o: 1}, {t: 5, o: 2}, 
-                {t: 6, o: 0}, {t: 7, o: 1}, {t: 5, o: 0}, {t: 8, o: 2}
+        // Canlı VAR Kontrol Monitörü Fonksiyonu
+        function triggerVarCheck() {
+            const res = document.getElementById('varResult');
+            res.style.color = '#fff';
+            res.innerText = "🔄 Görüntüler İnceleniyor...";
+            
+            const decisions = [
+                "✅ GOL GEÇERLİ! Temiz vuruş, santra!",
+                "👉 PENALTI! La Squadra lehine beyaz nokta!",
+                "🛡️ TEMİZ MÜDAHALE! Emir topa dokundu, devam!",
+                "⚡ OFSAYT YOK! Kaan tam zamanında hareketlendi!"
             ];
 
-            let counter = 0;
-            const spinInterval = setInterval(() => {
-                const randT = Math.floor(Math.random() * 9);
-                const randO = Math.floor(Math.random() * 4);
-                wheelBox.innerText = `La Squadra ${randT} - ${randO} Rakip`;
-                counter++;
-
-                if (counter > 15) {
-                    clearInterval(spinInterval);
-                    wheelBox.classList.remove('wheel-spin-active');
-
-                    const finalScore = possibleScores[Math.floor(Math.random() * possibleScores.length)];
-                    wheelBox.innerText = `🎉 ${user} Tahmini: La Squadra ${finalScore.t} - ${finalScore.o} Rakip`;
-
-                    const list = document.getElementById('predictionList');
-                    const item = document.createElement('div');
-                    item.className = 'pred-item';
-                    item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${finalScore.t} - ${finalScore.o} Rakip (Çarktan Kilitlendi!)`;
-                    list.prepend(item);
-
-                    document.getElementById('predUser').value = "";
-                }
-            }, 90);
+            setTimeout(() => {
+                const pick = decisions[Math.floor(Math.random() * decisions.length)];
+                res.style.color = '#4ade80';
+                res.innerText = pick;
+            }, 1400);
         }
 
         let goals3D = 0;
