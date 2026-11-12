@@ -275,12 +275,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.3s;
-        }
-
-        .match-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
         }
 
         .match-badge {
@@ -730,27 +724,27 @@
             box-shadow: 0 4px 15px rgba(212,175,55,0.4);
         }
 
-        /* ULTRA ŞIK ŞUT ÇEKME / PENALTI OYUNU */
+        /* 3D STADYUM PENALTI OYUNU */
         .game-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
             border: 2px solid var(--accent);
             border-radius: 28px;
             padding: 40px 30px;
-            max-width: 850px;
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
-        .game-screen {
+        .stadium-3d-screen {
             width: 100%;
-            height: 380px;
-            background: linear-gradient(180deg, #163e22 0%, #0a2012 100%);
-            border: 3px solid #fff;
-            border-radius: 16px;
+            height: 420px;
+            background: radial-gradient(circle at 50% 30%, #1e4d2b 0%, #0d2315 70%);
+            border: 3px solid var(--accent);
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.7);
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -758,47 +752,118 @@
             padding: 20px;
         }
 
-        .goal-frame {
-            width: 70%;
-            height: 140px;
-            border: 4px solid #fff;
-            border-bottom: none;
-            position: relative;
+        /* Arkada taraftarlar ve ışıklar */
+        .stadium-crowd {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 110px;
+            background: linear-gradient(180deg, #09090c 0%, #151520 100%);
+            border-bottom: 2px solid rgba(212,175,55,0.3);
             display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            background: rgba(255,255,255,0.03);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1;
         }
 
-        .goal-target {
-            width: 30%;
-            height: 100%;
-            border: 2px dashed rgba(212, 175, 55, 0.6);
+        .crowd-lights {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse-light 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-light {
+            0% { opacity: 0.6; text-shadow: 0 0 5px var(--accent); }
+            100% { opacity: 1; text-shadow: 0 0 15px var(--accent); }
+        }
+
+        .crowd-banner {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            background: var(--primary);
+            padding: 3px 15px;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            margin-top: 4px;
+        }
+
+        /* 3D Derinlikli Kale */
+        .goal-3d {
+            width: 60%;
+            height: 150px;
+            border: 6px solid #fff;
+            border-bottom: none;
+            position: relative;
+            margin-top: 100px;
+            z-index: 2;
+            background: rgba(255,255,255,0.04);
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
             display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        /* Hareketli Kaleci */
+        .keeper-3d {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 75px;
+            background: linear-gradient(135deg, #38bdf8, #0369a1);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            z-index: 3;
+            transition: left 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
-            font-weight: 900;
-            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+        }
+
+        .keeper-head {
+            width: 18px; height: 18px; background: #fde047; border-radius: 50%; margin-bottom: 3px;
+        }
+
+        .keeper-body {
+            font-size: 0.65rem; font-weight: 900; color: #fff;
+        }
+
+        /* Hedef Seçim Alanları */
+        .target-zone {
+            width: 33.3%;
+            height: 100%;
             cursor: pointer;
+            z-index: 4;
             transition: background 0.2s;
         }
 
-        .goal-target:hover {
-            background: rgba(212, 175, 55, 0.2);
+        .target-zone:hover {
+            background: rgba(212, 175, 55, 0.25);
         }
 
-        .ball-spot {
-            width: 35px;
-            height: 35px;
+        /* Top Spotu */
+        .ball-3d {
+            width: 38px;
+            height: 38px;
             background: #fff;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            transition: all 0.5s ease-in-out;
+            font-size: 1.1rem;
+            transition: all 0.4s ease-in-out;
         }
 
         .game-controls {
@@ -806,7 +871,6 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
         .shoot-btn {
@@ -1278,7 +1342,7 @@
                 <ul>
                     <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
-                    <li><a href="#oyun">Penaltı Oyunu</a></li>
+                    <li><a href="#oyun">3D Penaltı</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
                     <li><a href="#istatistik">İstatistik</a></li>
@@ -1506,34 +1570,46 @@
         </div>
     </section>
 
-    <!-- PROFESYONEL PENALTI / ŞUT ÇEKME OYUNU -->
+    <!-- 3D STADYUM PENALTI OYUNU -->
     <section id="oyun">
         <div class="game-container">
-            <div class="section-title" style="margin-bottom: 25px;">
-                <h3>La Squadra <span>Penaltı Düellosu</span></h3>
-                <p>Köşeyi Seç, Şutunu Çek, Efsane Golleri At!</p>
+            <div class="section-title" style="margin-bottom: 20px;">
+                <h3>3D Stadyum <span>Penaltı Düellosu</span></h3>
+                <p>Taraftarlar Arkanda, Kaleciyi Avla, Köşeyi Seç Şutunu Çek!</p>
             </div>
 
             <div class="game-scoreboard">
                 Gol Sayısı: <span id="goalCount">0</span> | Kurtarış / Kaçan: <span id="missCount">0</span>
             </div>
 
-            <div class="game-screen" id="gameScreen">
-                <div class="goal-frame">
-                    <div class="goal-target" onclick="shootBall('left')">SOL KÖŞE</div>
-                    <div class="goal-target" onclick="shootBall('center')">ORTA</div>
-                    <div class="goal-target" onclick="shootBall('right')">SAĞ KÖŞE</div>
+            <div class="stadium-3d-screen" id="stadiumScreen">
+                <!-- Arka Taraftar & Tribün Atmosferi -->
+                <div class="stadium-crowd">
+                    <div class="crowd-lights">⚡ LA SQUADRA ARENA - CANLI TARAFTAR COŞKUSU ⚡</div>
+                    <div class="crowd-banner">OLA LA LA LA SQUADRA! 🔥</div>
                 </div>
 
-                <div id="gameMsg" style="color: #fff; font-weight: 800; font-size: 1.1rem; text-shadow: 0 2px 5px rgba(0,0,0,0.8);">
-                    Şut çekmek istediğin kaleci köşesini seç! ⚽
+                <!-- 3D Kale ve Hareketli Kaleci -->
+                <div class="goal-3d">
+                    <div class="keeper-3d" id="keeperNode">
+                        <div class="keeper-head"></div>
+                        <div class="keeper-body">GK</div>
+                    </div>
+                    <div class="target-zone" onclick="shoot3D('left')"></div>
+                    <div class="target-zone" onclick="shoot3D('center')"></div>
+                    <div class="target-zone" onclick="shoot3D('right')"></div>
                 </div>
 
-                <div class="ball-spot" id="ballSpot">⚽</div>
+                <div id="stadiumMsg" style="color: #fff; font-weight: 900; font-size: 1.05rem; text-shadow: 0 2px 5px rgba(0,0,0,0.9); z-index: 5;">
+                    Sol köşe, orta veya sağ köşeden birini seç ve şutunu gönder! ⚽
+                </div>
+
+                <!-- Top -->
+                <div class="ball-3d" id="ball3D">⚽</div>
             </div>
 
             <div class="game-controls">
-                <button class="shoot-btn" onclick="resetGame()">Skoru Sıfırla</button>
+                <button class="shoot-btn" onclick="reset3DGame()">Skoru Sıfırla</button>
             </div>
         </div>
     </section>
@@ -1734,51 +1810,62 @@
             document.getElementById('spotDesc').innerText = desc;
         }
 
-        // Penaltı Oyunu Mantığı
-        let goals = 0;
-        let misses = 0;
+        // 3D Stadyum Penaltı Oyunu Mantığı
+        let goals3D = 0;
+        let misses3D = 0;
 
-        function shootBall(corner) {
-            const ball = document.getElementById('ballSpot');
-            const msg = document.getElementById('gameMsg');
-            
-            // Kalecinin hamlesi (Rastgele: left, center, right)
+        function shoot3D(choice) {
+            const ball = document.getElementById('ball3D');
+            const keeper = document.getElementById('keeperNode');
+            const msg = document.getElementById('stadiumMsg');
+
+            // Kalecinin rastgele hamlesi (left, center, right)
             const corners = ['left', 'center', 'right'];
             const keeperChoice = corners[Math.floor(Math.random() * corners.length)];
 
-            // Topun hareket animasyonu
-            if (corner === 'left') ball.style.transform = "translate(-110px, -180px) scale(0.7)";
-            else if (corner === 'right') ball.style.transform = "translate(110px, -180px) scale(0.7)";
-            else ball.style.transform = "translate(0px, -190px) scale(0.7)";
+            // Kaleciyi hareket ettir
+            if (keeperChoice === 'left') keeper.style.left = "28%";
+            else if (keeperChoice === 'right') keeper.style.left = "72%";
+            else keeper.style.left = "50%";
+
+            // Topun 3D şut hareketi
+            if (choice === 'left') {
+                ball.style.transform = "translate(-130px, -230px) scale(0.6)";
+            } else if (choice === 'right') {
+                ball.style.transform = "translate(130px, -230px) scale(0.6)";
+            } else {
+                ball.style.transform = "translate(0px, -240px) scale(0.6)";
+            }
 
             setTimeout(() => {
-                if (corner === keeperChoice) {
-                    misses++;
-                    document.getElementById('missCount').innerText = misses;
-                    msg.innerHTML = "❌ Kaleci çıkardı! Penaltı kaçtı!";
+                if (choice === keeperChoice) {
+                    misses3D++;
+                    document.getElementById('missCount').innerText = misses3D;
+                    msg.innerHTML = "❌ Kaleci harika uzandı, şutu çıkardı!";
                     msg.style.color = "#f87171";
                 } else {
-                    goals++;
-                    document.getElementById('goalCount').innerText = goals;
-                    msg.innerHTML = "⚽ GGOOOLL! Doksandan ağlara gitti!";
+                    goals3D++;
+                    document.getElementById('goalCount').innerText = goals3D;
+                    msg.innerHTML = "⚽ GGOOOLL! Taraftarlar ayağa kalktı!";
                     msg.style.color = "#4ade80";
                 }
 
-                // Topu geri getir
+                // Pozisyonu sıfırla
                 setTimeout(() => {
                     ball.style.transform = "translate(0, 0) scale(1)";
-                    msg.innerHTML = "Şut çekmek istediğin kaleci köşesini seç! ⚽";
+                    keeper.style.left = "50%";
+                    msg.innerHTML = "Sol köşe, orta veya sağ köşeden birini seç ve şutunu gönder! ⚽";
                     msg.style.color = "#fff";
-                }, 1200);
-            }, 400);
+                }, 1300);
+            }, 450);
         }
 
-        function resetGame() {
-            goals = 0;
-            misses = 0;
-            document.getElementById('goalCount').innerText = goals;
-            document.getElementById('missCount').innerText = misses;
-            document.getElementById('gameMsg').innerHTML = "Oyun sıfırlandı. Yeni şutunu çek! ⚽";
+        function reset3DGame() {
+            goals3D = 0;
+            misses3D = 0;
+            document.getElementById('goalCount').innerText = goals3D;
+            document.getElementById('missCount').innerText = misses3D;
+            document.getElementById('stadiumMsg').innerHTML = "Oyun sıfırlandı. Yeni şutunu gönder! ⚽";
         }
 
         // Geri Sayım Sayaçları
