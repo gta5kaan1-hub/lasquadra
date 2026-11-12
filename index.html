@@ -275,6 +275,8 @@
             max-width: 400px;
             margin: 95px auto 10px;
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+            position: relative;
+            z-index: 10;
         }
 
         .music-info {
@@ -335,50 +337,173 @@
             background: #fff;
         }
 
+        /* IŞIL IŞIL HAREKETLİ HERO (GİRİŞ VİTRİNİ) ALANI */
         .hero {
-            height: 80vh;
-            background: linear-gradient(to bottom, rgba(7,7,9,0.3), var(--bg)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
+            min-height: 82vh;
+            background: 
+                radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.18) 0%, rgba(74, 14, 23, 0.45) 45%, rgba(7, 7, 9, 0.95) 85%),
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920&auto=format&fit=crop') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 40px 20px;
             position: relative;
+            overflow: hidden;
         }
 
-        .hero-content h2 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 15px;
+        /* Arka plan nefes alan stadyum ışığı */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: stadium-glow 4s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes stadium-glow {
+            0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+        }
+
+        /* Havada uçuşan altın kıvılcımlar */
+        .sparkles-layer {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(2px 2px at 15% 25%, #FFD700, transparent),
+                radial-gradient(2px 2px at 35% 75%, #FFF8DC, transparent),
+                radial-gradient(3px 3px at 55% 20%, #D4AF37, transparent),
+                radial-gradient(2px 2px at 75% 65%, #FFD700, transparent),
+                radial-gradient(2.5px 2.5px at 88% 30%, #FFF, transparent),
+                radial-gradient(2px 2px at 25% 85%, #D4AF37, transparent),
+                radial-gradient(3px 3px at 68% 85%, #FFD700, transparent);
+            background-size: 400px 400px;
+            animation: float-sparkles 14s linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float-sparkles {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-400px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: hero-float 4.5s ease-in-out infinite;
+        }
+
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .hero-vip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(74, 14, 23, 0.75);
+            border: 1.5px solid var(--accent);
+            color: var(--accent);
+            padding: 7px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            background: linear-gradient(to right, #fff, var(--accent));
+            margin-bottom: 22px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+        }
+
+        /* Işıl Işıl Akan Altın Başlık */
+        .hero-content h2 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1.15;
+            background: linear-gradient(
+                110deg,
+                #b8860b 0%,
+                #ffd700 22%,
+                #ffffff 38%,
+                #ffd700 55%,
+                #b8860b 75%,
+                #ffd700 100%
+            );
+            background-size: 250% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gold-shimmer 3.2s linear infinite;
+            filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.45));
+        }
+
+        @keyframes gold-shimmer {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 30px;
+            color: #e4e4ec;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
+        /* Işık Yansımalı Parlak Buton */
         .btn-primary {
-            display: inline-block;
-            padding: 12px 30px;
-            background: var(--accent);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 38px;
+            background: linear-gradient(135deg, #ffd700, #d4af37, #b8860b);
             color: var(--primary-dark);
-            font-weight: 700;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 40px;
+            overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.65);
+            border: 2px solid #fff6cc;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+            transform: skewX(-25deg);
+            animation: btn-shine 3s infinite;
+        }
+
+        @keyframes btn-shine {
+            0% { left: -120%; }
+            45%, 100% { left: 160%; }
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.9);
         }
 
         section {
@@ -904,7 +1029,7 @@
 
         @media(max-width: 768px) {
             .about-card, .anthem-grid, .matches-grid { grid-template-columns: 1fr; }
-            .hero-content h2 { font-size: 2.3rem; }
+            .hero-content h2 { font-size: 2.3rem; letter-spacing: 2px; }
             nav ul { display: none; }
             .pitch { height: auto; min-height: 620px; padding: 30px 10px; }
             .row-line { gap: 15px; }
@@ -1000,11 +1125,18 @@
         </div>
     </div>
 
-    <section class="hero">
+    <!-- IŞIL IŞIL HAREKETLİ HERO VİTRİNİ -->
+    <section class="hero" style="max-width: 100%; margin: 0;">
+        <div class="sparkles-layer"></div>
         <div class="hero-content">
+            <div class="hero-vip-badge">
+                <i class="fa-solid fa-crown"></i> İSTANBUL'UN EFSANESİ • 2026 <i class="fa-solid fa-crown"></i>
+            </div>
             <h2>La Squadra'ya Hoş Geldiniz</h2>
             <p>Zorluklara meydan okuyan, dostluk ve tutkuyla kurulan efsanevi kadro sahada!</p>
-            <a href="#mac" class="btn-primary">Maç Detaylarına Bak</a>
+            <a href="#mac" class="btn-primary">
+                <i class="fa-solid fa-futbol"></i> Maç Detaylarına Bak
+            </a>
         </div>
     </section>
 
@@ -1258,7 +1390,7 @@
                     <button class="shoot-btn" onclick="submitPrediction()">Tahmini Kilitle 🎯</button>
                 </div>
 
-                <!-- Örnek tahminler tamamen kaldırıldı, tertemiz liste alanı -->
+                <!-- Tertemiz tahmin listesi alanı -->
                 <div class="prediction-list" id="predictionList"></div>
             </div>
         </div>
