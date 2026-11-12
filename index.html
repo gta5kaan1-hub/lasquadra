@@ -754,137 +754,136 @@
             text-transform: uppercase;
         }
 
-        /* YENİ EKSTRA 1: MAÇIN ADAMI (MOTM) CANLI TARAFTAR OYLAMASI */
-        .motm-container {
-            background: linear-gradient(135deg, #14141c, #1a080d);
+        /* YENİ ÖZELLİK 1: LA SQUADRA ŞANSLI TAHMİN SKOR KULESİ */
+        .prediction-tower-container {
+            background: linear-gradient(135deg, #16121c, #1f080f);
             border: 2px solid var(--accent);
             border-radius: 28px;
             padding: 40px 30px;
-            max-width: 950px;
+            max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .motm-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .motm-card {
-            background: rgba(12, 12, 18, 0.95);
-            border: 1.5px solid rgba(212, 175, 55, 0.35);
-            border-radius: 18px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-
-        .motm-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .motm-card h4 {
-            font-size: 1.2rem;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .motm-card span {
-            display: block;
-            font-size: 0.78rem;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-
-        .motm-bar-bg {
-            width: 100%;
-            height: 10px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .motm-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transition: width 0.5s ease;
-        }
-
-        .motm-pct {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .motm-vote-btn {
-            background: linear-gradient(135deg, var(--accent), #b8860b);
-            color: var(--primary-dark);
-            border: none;
-            padding: 8px 18px;
-            border-radius: 15px;
-            font-weight: 900;
-            font-size: 0.8rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .motm-vote-btn:hover {
-            background: #fff;
-            transform: scale(1.05);
-        }
-
-        /* YENİ EKSTRA 2: CANLI İNTERAKTİF VAR KONTROL MONİTÖRÜ */
-        .var-container {
-            background: linear-gradient(135deg, #0d0d12, #18060a);
-            border: 2px solid var(--accent);
-            border-radius: 28px;
-            padding: 40px 30px;
-            max-width: 850px;
-            margin: 0 auto;
-            text-align: center;
             box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+            text-align: center;
         }
 
-        .var-screen {
-            background: #050507;
-            border: 3px solid #333;
-            border-radius: 18px;
-            padding: 30px 20px;
-            margin: 20px auto;
-            max-width: 600px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.15);
+        .pred-tower-box {
+            background: rgba(12, 12, 18, 0.92);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .var-badge {
-            display: inline-block;
-            background: #dc2626;
+        .pred-inputs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pred-inputs input {
+            background: #181216;
+            border: 1.5px solid var(--accent);
             color: #fff;
-            font-weight: 900;
-            font-size: 0.8rem;
-            padding: 4px 14px;
-            border-radius: 6px;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            outline: none;
+            width: 220px;
         }
 
-        .var-result-text {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            min-height: 45px;
+        .pred-score-group {
             display: flex;
             align-items: center;
             justify-content: center;
-            letter-spacing: 1px;
+            gap: 10px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .pred-score-group input {
+            width: 70px;
+            text-align: center;
+            background: #181216;
+            border: 1.5px solid var(--accent);
+            color: #fff;
+            border-radius: 10px;
+            padding: 8px;
+            font-size: 1.2rem;
+            font-weight: 900;
+        }
+
+        /* YENİ ÖZELLİK 2: EFSANEVİ ASLAN PENÇESİ TEPKİ & MOTİVASYON DUVARI */
+        .motivation-wall-container {
+            background: linear-gradient(135deg, #0d0d12, #1b070d);
+            border: 2px solid var(--accent);
+            border-radius: 28px;
+            padding: 40px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+            text-align: center;
+        }
+
+        .motivation-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .mot-card {
+            background: linear-gradient(145deg, #181218, #0e0507);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 22px 15px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mot-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.45);
+        }
+
+        .mot-card i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .mot-card h4 {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .mot-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .mot-counter {
+            margin-top: 12px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: inline-block;
         }
 
         /* Saha Tasarımı */
@@ -1294,8 +1293,8 @@
                     <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#oyun">3D Penaltı</a></li>
-                    <li><a href="#motm">Maçın Adamı</a></li>
-                    <li><a href="#var">VAR Odası</a></li>
+                    <li><a href="#tahmin">Şanslı Skor</a></li>
+                    <li><a href="#motivasyon">Motivasyon</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
                     <li><a href="#formalar">Formalar</a></li>
@@ -1304,9 +1303,9 @@
         </div>
     </header>
 
-    <!-- Gizli YouTube Oynatıcı -->
+    <!-- Gizli YouTube Oynatıcı (Reklam Engelleme & Playlist Modu Aktif) -->
     <div style="display:none;">
-        <iframe id="yt-player" width="200" height="200" src="https://www.youtube.com/embed/u9oSVuf-0rc?enablejsapi=1&autoplay=0" allow="autoplay"></iframe>
+        <iframe id="yt-player" width="200" height="200" src="https://www.youtube.com/embed/u9oSVuf-0rc?enablejsapi=1&autoplay=0&playlist=u9oSVuf-0rc&loop=1" allow="autoplay"></iframe>
     </div>
 
     <!-- Müzik Kontrol Paneli -->
@@ -1568,64 +1567,71 @@
         </div>
     </section>
 
-    <!-- YENİ EKSTRA 1: MAÇIN ADAMI (MOTM) CANLI TARAFTAR OYLAMASI -->
-    <section id="motm">
-        <div class="motm-container">
-            <div class="section-title" style="margin-bottom: 30px;">
-                <h3>Maçın Adamı <span>Canlı Oylama</span></h3>
-                <p>Sence haftanın yıldızı kim? Oyunu ver, zirveyi belirle!</p>
+    <!-- YENİ ÖZELLİK 1: LA SQUADRA ŞANSLI SKOR TAHMİN KULESİ -->
+    <section id="tahmin">
+        <div class="prediction-tower-container">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h3>Şanslı Skor <span>Tahmin Kulesi</span></h3>
+                <p>Cumartesi günkü maç için skorunu yaz, efsaneler arasına adını yazdır!</p>
             </div>
 
-            <div class="motm-grid">
-                <div class="motm-card">
-                    <h4>KAAN</h4>
-                    <span>Trossard 99 (#19)</span>
-                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-kaan" style="width: 40%;"></div></div>
-                    <div class="motm-pct" id="pct-kaan">%40</div>
-                    <button class="motm-vote-btn" onclick="voteMotm('kaan')">Oy Ver ⭐</button>
+            <div class="pred-tower-box">
+                <div class="pred-inputs">
+                    <input type="text" id="towerUser" placeholder="Adın / Soyadın (Örn: Hacı)">
                 </div>
+                <div class="pred-score-group">
+                    La Squadra <input type="number" id="towerHome" value="5" min="0" max="20"> - <input type="number" id="towerAway" value="1" min="0" max="20"> Rakip
+                </div>
+                <div>
+                    <button class="shoot-btn" onclick="submitTowerPrediction()">🚀 Tahmini Panoya Ekle</button>
+                </div>
+            </div>
 
-                <div class="motm-card">
-                    <h4>HACI</h4>
-                    <span>Saba (#10)</span>
-                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-haci" style="width: 25%;"></div></div>
-                    <div class="motm-pct" id="pct-haci">%25</div>
-                    <button class="motm-vote-btn" onclick="voteMotm('haci')">Oy Ver ⭐</button>
-                </div>
-
-                <div class="motm-card">
-                    <h4>EBU</h4>
-                    <span>Forklift Canavarı (#7)</span>
-                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-ebu" style="width: 20%;"></div></div>
-                    <div class="motm-pct" id="pct-ebu">%20</div>
-                    <button class="motm-vote-btn" onclick="voteMotm('ebu')">Oy Ver ⭐</button>
-                </div>
-
-                <div class="motm-card">
-                    <h4>ÇAY (C)</h4>
-                    <span>Leroy Sané (#24)</span>
-                    <div class="motm-bar-bg"><div class="motm-bar-fill" id="bar-cay" style="width: 15%;"></div></div>
-                    <div class="motm-pct" id="pct-cay">%15</div>
-                    <button class="motm-vote-btn" onclick="voteMotm('cay')">Oy Ver ⭐</button>
-                </div>
+            <div class="mini-pred-list" id="towerList" style="max-height: 180px;">
+                <div class="pred-item"><span>⭐ Kaan:</span> La Squadra 6 - 1 Rakip (Tahmin Kaydedildi)</div>
+                <div class="pred-item"><span>⭐ Hacı:</span> La Squadra 5 - 0 Rakip (Tahmin Kaydedildi)</div>
+                <div class="pred-item"><span>⭐ Ebu:</span> La Squadra 4 - 2 Rakip (Tahmin Kaydedildi)</div>
             </div>
         </div>
     </section>
 
-    <!-- YENİ EKSTRA 2: CANLI VAR KONTROL MONİTÖRÜ -->
-    <section id="var">
-        <div class="var-container">
-            <div class="section-title" style="margin-bottom: 20px;">
-                <h3>La Squadra <span>VAR Kontrol Odası</span></h3>
-                <p>Tartışmalı pozisyon mu var? Hakemi VAR monitörüne çağır!</p>
+    <!-- YENİ ÖZELLİK 2: EFSANEVİ ASLAN PENÇESİ TEPKİ & MOTİVASYON DUVARI -->
+    <section id="motivasyon">
+        <div class="motivation-wall-container">
+            <div class="section-title" style="margin-bottom: 25px;">
+                <h3>Aslan Pençesi <span>Motivasyon Duvarı</span></h3>
+                <p>Takım arkadaşına ateş et! Butonlara tıklayarak coşkuyu doruğa çıkar.</p>
             </div>
 
-            <div class="var-screen">
-                <div class="var-badge">📺 VAR CHECK IN PROGRESS</div>
-                <div class="var-result-text" id="varResult">Pozisyon İncelemesi Bekleniyor...</div>
-            </div>
+            <div class="motivation-cards-grid">
+                <div class="mot-card" onclick="boostMotivation('fire')">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                    <h4>Ateş Et</h4>
+                    <p>Sahayı yakıp kavur!</p>
+                    <div class="mot-counter" id="count-fire">24 Ateş</div>
+                </div>
 
-            <button class="shoot-btn" onclick="triggerVarCheck()">🔍 VAR Monitörünü İncele</button>
+                <div class="mot-card" onclick="boostMotivation('bolt')">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h4>Fırtına Kopar</h4>
+                    <p>Rakipleri sürklase et!</p>
+                    <div class="mot-counter" id="count-bolt">19 Fırtına</div>
+                </div>
+
+                <div class="mot-card" onclick="boostMotivation('crown')">
+                    <i class="fa-solid fa-chess-king"></i>
+                    <h4>Kral Sensin</h4>
+                    <p>Zirveyi kimseye kaptırma!</p>
+                    <div class="mot-counter" id="count-crown">31 Taç</div>
+                </div>
+
+                <div class="mot-card" onclick="boostMotivation('shield')">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h4>Çelik Duvar</h4>
+                    <p>Arkada geçit yok!</p>
+                    <div class="mot-counter" id="count-shield">15 Kalkan</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1916,36 +1922,33 @@
             }
         }
 
-        // Maçın Adamı (MOTM) Canlı Oylama Fonksiyonu
-        const motmVotes = { kaan: 8, haci: 5, ebu: 4, cay: 3 };
-        function voteMotm(player) {
-            motmVotes[player]++;
-            const total = motmVotes.kaan + motmVotes.haci + motmVotes.ebu + motmVotes.cay;
-            for (const key in motmVotes) {
-                const pct = Math.round((motmVotes[key] / total) * 100);
-                document.getElementById('bar-' + key).style.width = pct + '%';
-                document.getElementById('pct-' + key).innerText = '%' + pct;
+        // Şanslı Skor Tahmin Kulesi Fonksiyonu
+        function submitTowerPrediction() {
+            const user = document.getElementById('towerUser').value.trim();
+            const home = document.getElementById('towerHome').value;
+            const away = document.getElementById('towerAway').value;
+
+            if (!user) {
+                alert("Lütfen adını veya lakabını yaz!");
+                return;
             }
+
+            const list = document.getElementById('towerList');
+            const item = document.createElement('div');
+            item.className = 'pred-item';
+            item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${home} - ${away} Rakip (Yeni Tahmin!)`;
+            list.prepend(item);
+
+            document.getElementById('towerUser').value = "";
+            alert("Tebrikler! Skor tahminin panoya başarıyla eklendi.");
         }
 
-        // Canlı VAR Kontrol Monitörü Fonksiyonu
-        function triggerVarCheck() {
-            const res = document.getElementById('varResult');
-            res.style.color = '#fff';
-            res.innerText = "🔄 Görüntüler İnceleniyor...";
-            
-            const decisions = [
-                "✅ GOL GEÇERLİ! Temiz vuruş, santra!",
-                "👉 PENALTI! La Squadra lehine beyaz nokta!",
-                "🛡️ TEMİZ MÜDAHALE! Emir topa dokundu, devam!",
-                "⚡ OFSAYT YOK! Kaan tam zamanında hareketlendi!"
-            ];
-
-            setTimeout(() => {
-                const pick = decisions[Math.floor(Math.random() * decisions.length)];
-                res.style.color = '#4ade80';
-                res.innerText = pick;
-            }, 1400);
+        // Motivasyon Duvarı Sayaç Fonksiyonu
+        const motCounts = { fire: 24, bolt: 19, crown: 31, shield: 15 };
+        function boostMotivation(type) {
+            motCounts[type]++;
+            const labels = { fire: 'Ateş', bolt: 'Fırtına', crown: 'Taç', shield: 'Kalkan' };
+            document.getElementById('count-' + type).innerText = motCounts[type] + ' ' + labels[type];
         }
 
         let goals3D = 0;
