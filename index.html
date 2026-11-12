@@ -33,6 +33,76 @@
             color: var(--text);
             overflow-x: hidden;
             background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Ekranı Kaplayan Stadyum Meşale (Pyro) Işık Efekti Katmanı */
+        #pyroScreenFlash {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 69, 0, 0.35) 0%, rgba(74, 14, 23, 0.5) 60%, transparent 90%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 998;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        #pyroScreenFlash.active {
+            opacity: 1;
+            animation: pyro-pulse 1.2s infinite alternate;
+        }
+
+        @keyframes pyro-pulse {
+            0% { opacity: 0.75; }
+            100% { opacity: 1; }
+        }
+
+        /* Sol ve Sağ Alt Köşe Taraftar Meşalesi (Pyro) Butonları */
+        .pyro-torch {
+            position: fixed;
+            bottom: 60px;
+            width: 58px;
+            height: 58px;
+            background: linear-gradient(135deg, #ff4500, #4A0E17);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pyro-torch.left { left: 20px; }
+        .pyro-torch.right { right: 90px; }
+
+        .pyro-torch:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
+        }
+
+        .pyro-tooltip {
+            position: absolute;
+            bottom: 70px;
+            background: var(--primary);
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            border: 1px solid var(--accent);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .pyro-torch:hover .pyro-tooltip {
+            opacity: 1;
         }
 
         header {
@@ -622,7 +692,7 @@
             text-transform: uppercase;
         }
 
-        /* YENİ KAHİN ÇARKI (CASINO / ÇARKIFELEK SİSTEMİ) */
+        /* KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) */
         .prediction-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
             border: 2px solid var(--accent);
@@ -1038,6 +1108,28 @@
 </head>
 <body>
 
+    <!-- Ekranı Kaplayan Stadyum Meşale (Pyro) Işık Efekti Katmanı -->
+    <div id="pyroScreenFlash"></div>
+
+    <!-- Sol ve Sağ Alt Köşe İnteraktif Taraftar Meşalesi (Pyro) Butonları -->
+    <div class="pyro-torch left" 
+         onmouseenter="togglePyro(true)" 
+         onmouseleave="togglePyro(false)" 
+         onclick="togglePyroClick()" 
+         title="Meşaleyi Yak!">
+        🔥
+        <div class="pyro-tooltip">Meşale Yak!</div>
+    </div>
+
+    <div class="pyro-torch right" 
+         onmouseenter="togglePyro(true)" 
+         onmouseleave="togglePyro(false)" 
+         onclick="togglePyroClick()" 
+         title="Meşaleyi Yak!">
+        🔥
+        <div class="pyro-tooltip">Deplasman Havası</div>
+    </div>
+
     <!-- Stadyum Canlı LED Kayan Bant -->
     <div class="stadium-led-ticker">
         <div class="led-title">LA SQUADRA CANLI LED</div>
@@ -1366,7 +1458,7 @@
         </div>
     </section>
 
-    <!-- 4. FİKİR: KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) -->
+    <!-- KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİNİ) -->
     <section id="kahin">
         <div class="prediction-container">
             <div class="section-title" style="margin-bottom: 20px;">
@@ -1585,6 +1677,21 @@
             document.getElementById('music-status').style.color = 'var(--accent)';
         }
 
+        // İnteraktif Taraftar Meşalesi (Pyro) Efekti Fonksiyonları
+        function togglePyro(status) {
+            const flash = document.getElementById('pyroScreenFlash');
+            if (status) {
+                flash.classList.add('active');
+            } else {
+                flash.classList.remove('active');
+            }
+        }
+
+        function togglePyroClick() {
+            const flash = document.getElementById('pyroScreenFlash');
+            flash.classList.toggle('active');
+        }
+
         function openFifaCard() {
             document.getElementById('trossardModal').style.display = 'flex';
         }
@@ -1636,7 +1743,7 @@
             }
         }
 
-        // 4. FİKİR: KAHİN ÇARKI (ÇARKIFELEK / MİNİ CASINO SKOR TAHMİN SİSTEMİ)
+        // Kahin Çarkı (Çarkıfelek Arenası)
         function spinScoreWheel() {
             const user = document.getElementById('predUser').value.trim();
             if (!user) {
@@ -1663,11 +1770,9 @@
                     clearInterval(spinInterval);
                     wheelBox.classList.remove('wheel-spin-active');
 
-                    // Sonuç belirleme
                     const finalScore = possibleScores[Math.floor(Math.random() * possibleScores.length)];
                     wheelBox.innerText = `🎉 ${user} Tahmini: La Squadra ${finalScore.t} - ${finalScore.o} Rakip`;
 
-                    // Listeye ekle
                     const list = document.getElementById('predictionList');
                     const item = document.createElement('div');
                     item.className = 'pred-item';
