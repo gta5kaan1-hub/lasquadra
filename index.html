@@ -503,7 +503,7 @@
             text-transform: uppercase;
         }
 
-        /* KAHİN ÇARKI */
+        /* KAHİN ÇARKI (SERBEST SKOR YAZMA ALANI) */
         .prediction-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
             border: 2px solid var(--accent);
@@ -525,13 +525,14 @@
 
         .pred-input-group {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
-        .pred-input-group input, .pred-input-group select {
+        .pred-input-group input {
             background: #181216;
             border: 2px solid var(--accent);
             color: #fff;
@@ -540,6 +541,29 @@
             font-weight: 700;
             font-size: 0.95rem;
             outline: none;
+        }
+
+        .score-inputs-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #181216;
+            border: 2px solid var(--accent);
+            padding: 6px 12px;
+            border-radius: 10px;
+        }
+
+        .score-inputs-wrapper span {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+
+        .score-input {
+            width: 45px !important;
+            text-align: center;
+            border: 1px solid rgba(212,175,55,0.4) !important;
+            padding: 6px !important;
         }
 
         .prediction-list {
@@ -890,7 +914,7 @@
 </head>
 <body>
 
-    <!-- Stadyum Canlı LED Kayan Bant (İstediğin Şampiyonluk Sloganlarıyla Güncellendi) -->
+    <!-- Stadyum Canlı LED Kayan Bant -->
     <div class="stadium-led-ticker">
         <div class="led-title">LA SQUADRA CANLI LED</div>
         <div class="led-content">
@@ -1211,23 +1235,26 @@
         </div>
     </section>
 
-    <!-- KAHİN ÇARKI & MAÇ TAHMİN ARENASI -->
+    <!-- KAHİN ÇARKI & MAÇ TAHMİN ARENASI (SERBEST SKOR YAZMA) -->
     <section id="kahin">
         <div class="prediction-container">
             <div class="section-title" style="margin-bottom: 20px;">
                 <h3>Haftanın Maç <span>Kahini (Tahmin Çarkı)</span></h3>
-                <p>Maçın Skorunu Tahmin Et, Altın Harflerle Onur Listesine Yazıl!</p>
+                <p>Maçın Skorunu Kendin Yaz, Altın Harflerle Onur Listesine Yazıl!</p>
             </div>
 
             <div class="prediction-box">
                 <div class="pred-input-group">
                     <input type="text" id="predUser" placeholder="Adın / Soyadın">
-                    <select id="predScore">
-                        <option value="La Squadra 3 - 0 Rakip">La Squadra 3 - 0 Rakip</option>
-                        <option value="La Squadra 4 - 1 Rakip">La Squadra 4 - 1 Rakip</option>
-                        <option value="La Squadra 5 - 2 Rakip">La Squadra 5 - 2 Rakip</option>
-                        <option value="La Squadra 6 - 0 Rakip (Fırtına)">La Squadra 6 - 0 Rakip</option>
-                    </select>
+                    
+                    <div class="score-inputs-wrapper">
+                        <span>La Squadra</span>
+                        <input type="number" id="scoreTeam" class="score-input" value="5" min="0" max="20">
+                        <span>-</span>
+                        <input type="number" id="scoreOpponent" class="score-input" value="0" min="0" max="20">
+                        <span>Rakip</span>
+                    </div>
+
                     <button class="shoot-btn" onclick="submitPrediction()">Tahmini Kilitle 🎯</button>
                 </div>
 
@@ -1358,7 +1385,7 @@
         </div>
     </section>
 
-    <!-- KULÜP FORMALARI (RESİMLERE DOKUNMADAN VİTRİN) -->
+    <!-- KULÜP FORMALARI VİTRİNİ -->
     <section id="formalar">
         <div class="section-title">
             <h3>KULÜP <span>FORMALARI</span></h3>
@@ -1484,15 +1511,16 @@
             }
         }
 
-        // Kahin Çarkı Tahmin Fonksiyonu
+        // Kahin Çarkı Serbest Skor Tahmin Fonksiyonu
         function submitPrediction() {
             const user = document.getElementById('predUser').value.trim() || "Kahin";
-            const score = document.getElementById('predScore').value;
+            const teamScore = document.getElementById('scoreTeam').value || "0";
+            const opponentScore = document.getElementById('scoreOpponent').value || "0";
             const list = document.getElementById('predictionList');
 
             const item = document.createElement('div');
             item.className = 'pred-item';
-            item.innerHTML = `<span>⭐ ${user}:</span> ${score} (Onur Listesine Eklendi!)`;
+            item.innerHTML = `<span>⭐ ${user}:</span> La Squadra ${teamScore} - ${opponentScore} Rakip (Tahmin Kaydedildi!)`;
             list.prepend(item);
 
             document.getElementById('predUser').value = "";
