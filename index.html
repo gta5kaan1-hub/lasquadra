@@ -144,20 +144,123 @@
         .led-content {
             display: flex;
             white-space: nowrap;
-            animation: ticker-scroll 25s linear infinite;
-            font-weight: 800;
+            animation: ticker-scroll 28s linear infinite;
+            font-weight: 900;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         .led-content span {
-            margin-right: 50px;
-            color: #ffdf00;
+            margin-right: 60px;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
         }
 
         @keyframes ticker-scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
+        }
+
+        /* Sağ Alt Köşe Kayan Sohbet Widget Butonu ve Paneli */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent), #997A15);
+            color: var(--primary-dark);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            z-index: 1001;
+            transition: transform 0.3s, background 0.3s;
+            border: 2px solid #fff;
+        }
+
+        .chat-widget-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-popup-container {
+            position: fixed;
+            bottom: 135px;
+            right: 20px;
+            width: 360px;
+            max-width: 90vw;
+            background: linear-gradient(135deg, #161216, #0c0507);
+            border: 2px solid var(--accent);
+            border-radius: 22px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9), 0 0 30px rgba(212, 175, 55, 0.2);
+            z-index: 1002;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: pop-up 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes pop-up {
+            0% { transform: translateY(20px) scale(0.9); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .chat-popup-header {
+            background: var(--primary);
+            color: var(--accent);
+            padding: 15px;
+            font-weight: 900;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .chat-popup-header span {
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .chat-popup-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chat-popup-body {
+            height: 280px;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-popup-footer {
+            padding: 12px;
+            background: #0e0709;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+        }
+
+        .chat-popup-footer input {
+            background: #181216;
+            border: 1px solid var(--accent);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            outline: none;
         }
 
         /* Müzik Çalar Widget Alanı */
@@ -306,7 +409,7 @@
             font-size: 0.95rem;
         }
 
-        /* Simetrik Maç Kartları */
+        /* Maç Kartları */
         .matches-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -400,7 +503,7 @@
             text-transform: uppercase;
         }
 
-        /* KAHİN ÇARKI & MAÇ TAHMİN ARENASI */
+        /* KAHİN ÇARKI */
         .prediction-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
             border: 2px solid var(--accent);
@@ -428,19 +531,7 @@
             flex-wrap: wrap;
         }
 
-        .pred-input-group input {
-            background: #181216;
-            border: 2px solid var(--accent);
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            outline: none;
-            width: 200px;
-        }
-
-        .pred-input-group select {
+        .pred-input-group input, .pred-input-group select {
             background: #181216;
             border: 2px solid var(--accent);
             color: #fff;
@@ -475,60 +566,6 @@
             color: var(--accent);
         }
 
-        /* SOHBET / CANAVAR MODU ALANI */
-        .chat-container {
-            background: linear-gradient(135deg, #121218, #1a080d);
-            border: 2px solid var(--accent);
-            border-radius: 28px;
-            padding: 40px 30px;
-            max-width: 900px;
-            margin: 0 auto 50px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-
-        .chat-box {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(212,175,55,0.3);
-            border-radius: 20px;
-            height: 280px;
-            overflow-y: auto;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .chat-msg {
-            background: rgba(74, 14, 23, 0.4);
-            border-left: 4px solid var(--accent);
-            padding: 10px 15px;
-            border-radius: 0 10px 10px 0;
-            font-size: 0.9rem;
-        }
-
-        .chat-msg .sender {
-            color: var(--accent);
-            font-weight: 900;
-            margin-right: 8px;
-        }
-
-        .chat-input-group {
-            display: flex;
-            gap: 12px;
-        }
-
-        .chat-input-group input {
-            flex: 1;
-            background: #181216;
-            border: 2px solid var(--accent);
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-weight: 700;
-            outline: none;
-        }
-
         /* Saha Tasarımı */
         .tactics-container {
             background: linear-gradient(135deg, #121218, #1a080d);
@@ -546,7 +583,6 @@
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 25px;
-            letter-spacing: 0.5px;
         }
 
         .pitch {
@@ -583,11 +619,8 @@
 
         .center-circle {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 140px;
-            height: 140px;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 140px; height: 140px;
             border: 3px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             z-index: 1;
@@ -595,71 +628,32 @@
 
         .center-circle::after {
             content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            border-radius: 50%;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 10px; height: 10px; background: #fff; border-radius: 50%;
         }
 
         .penalty-box-top {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 52%;
-            height: 110px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
-            border-top: none;
-            z-index: 1;
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 52%; height: 110px; border: 3px solid rgba(255, 255, 255, 0.85); border-top: none; z-index: 1;
         }
 
         .penalty-box-top::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 48%;
-            height: 45px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
-            border-top: none;
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 48%; height: 45px; border: 3px solid rgba(255, 255, 255, 0.85); border-top: none;
         }
 
         .penalty-box-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 52%;
-            height: 110px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
-            border-bottom: none;
-            z-index: 1;
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 52%; height: 110px; border: 3px solid rgba(255, 255, 255, 0.85); border-bottom: none; z-index: 1;
         }
 
         .penalty-box-bottom::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 48%;
-            height: 45px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
-            border-bottom: none;
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 48%; height: 45px; border: 3px solid rgba(255, 255, 255, 0.85); border-bottom: none;
         }
 
         .corner {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(255, 255, 255, 0.85);
-            border-radius: 50%;
-            z-index: 1;
+            position: absolute; width: 24px; height: 24px; border: 3px solid rgba(255, 255, 255, 0.85); border-radius: 50%; z-index: 1;
         }
         .corner.tl { top: -12px; left: -12px; }
         .corner.tr { top: -12px; right: -12px; }
@@ -667,12 +661,7 @@
         .corner.br { bottom: -12px; right: -12px; }
 
         .row-line {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 45px;
-            z-index: 2;
-            width: 100%;
+            display: flex; justify-content: center; align-items: center; gap: 45px; z-index: 2; width: 100%;
         }
 
         .player-node {
@@ -698,872 +687,246 @@
         }
 
         .jersey-badge {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 6px;
+            width: 40px; height: 40px; margin: 0 auto 6px;
             background: linear-gradient(135deg, var(--accent), #997A15);
-            border: 2px solid #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            font-weight: 900;
-            color: var(--primary-dark);
+            border: 2px solid #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: 900; color: var(--primary-dark);
             box-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
 
         .captain-armband {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent);
-            color: var(--primary-dark);
-            font-size: 0.68rem;
-            font-weight: 900;
-            padding: 3px 8px;
-            border-radius: 10px;
+            position: absolute; top: -8px; right: -8px;
+            background: var(--accent); color: var(--primary-dark);
+            font-size: 0.68rem; font-weight: 900; padding: 3px 8px; border-radius: 10px;
         }
 
-        .player-node .p-name {
-            font-size: 1rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .player-node .p-alias {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-top: 2px;
-            text-transform: uppercase;
-        }
-
-        .player-node .p-pos {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+        .player-node .p-name { font-size: 1rem; font-weight: 900; color: #fff; }
+        .player-node .p-alias { font-size: 0.75rem; font-weight: 800; color: var(--accent); margin-top: 2px; text-transform: uppercase; }
+        .player-node .p-pos { font-size: 0.7rem; color: var(--text-muted); margin-top: 2px; }
 
         .player-spotlight {
-            max-width: 820px;
-            margin: 25px auto 0;
+            max-width: 820px; margin: 25px auto 0;
             background: linear-gradient(135deg, rgba(74, 14, 23, 0.6), rgba(18, 18, 24, 0.95));
-            border: 2px solid var(--accent);
-            border-radius: 18px;
-            padding: 20px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            flex-wrap: wrap;
+            border: 2px solid var(--accent); border-radius: 18px; padding: 20px 25px;
+            display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap;
         }
 
-        .spotlight-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
+        .spotlight-left { display: flex; align-items: center; gap: 15px; }
         .spotlight-num {
-            width: 50px;
-            height: 50px;
-            background: var(--accent);
-            color: var(--primary-dark);
-            font-weight: 900;
-            font-size: 1.2rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 50px; height: 50px; background: var(--accent); color: var(--primary-dark);
+            font-weight: 900; font-size: 1.2rem; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
         }
+        .spotlight-info h5 { font-size: 1.15rem; font-weight: 900; color: #fff; }
+        .spotlight-info span { color: var(--accent); font-size: 0.85rem; font-weight: 700; }
+        .spotlight-desc { color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
 
-        .spotlight-info h5 {
-            font-size: 1.15rem;
-            font-weight: 900;
-            color: #fff;
-        }
-
-        .spotlight-info span {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .spotlight-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        /* FIFA 27 Tarzı Özel 99'luk Kart Modalı */
+        /* FIFA 27 Kart Modalı */
         .trossard-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000;
+            justify-content: center; align-items: center; padding: 20px;
         }
 
         .fifa-card {
-            width: 320px;
-            background: linear-gradient(145deg, #2c161a, #120508, #2c161a);
-            border: 3px solid var(--accent);
-            border-radius: 24px;
-            padding: 25px;
-            text-align: center;
+            width: 320px; background: linear-gradient(145deg, #2c161a, #120508, #2c161a);
+            border: 3px solid var(--accent); border-radius: 24px; padding: 25px; text-align: center;
             box-shadow: 0 0 50px rgba(212, 175, 55, 0.6), inset 0 0 25px rgba(255,215,0,0.3);
-            position: relative;
-            animation: card-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; animation: card-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes card-pop {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes card-pop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-        .fifa-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 2px solid rgba(212,175,55,0.3);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-        }
-
-        .fifa-rating {
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: var(--accent);
-            line-height: 1;
-        }
-
-        .fifa-pos {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-        }
-
-        .fifa-name {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #fff;
-            margin: 10px 0 5px;
-            letter-spacing: 1px;
-        }
-
-        .fifa-badge-title {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
+        .fifa-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid rgba(212,175,55,0.3); padding-bottom: 12px; margin-bottom: 15px; }
+        .fifa-rating { font-size: 2.8rem; font-weight: 900; color: var(--accent); line-height: 1; }
+        .fifa-pos { font-size: 1.1rem; font-weight: 800; color: #fff; text-transform: uppercase; }
+        .fifa-name { font-size: 1.6rem; font-weight: 900; color: #fff; margin: 10px 0 5px; }
+        .fifa-badge-title { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
 
         .fifa-stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            text-align: left;
-            background: rgba(0,0,0,0.4);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(212,175,55,0.2);
-            margin-bottom: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left;
+            background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); margin-bottom: 20px;
         }
-
-        .stat-item {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .stat-item span {
-            color: var(--accent);
-        }
+        .stat-item { font-size: 0.95rem; font-weight: 800; color: #fff; display: flex; justify-content: space-between; }
+        .stat-item span { color: var(--accent); }
 
         .close-fifa-btn {
-            background: var(--accent);
-            color: var(--primary-dark);
-            border: none;
-            padding: 10px 25px;
-            font-weight: 900;
-            font-size: 0.9rem;
-            border-radius: 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+            background: var(--accent); color: var(--primary-dark); border: none;
+            padding: 10px 25px; font-weight: 900; font-size: 0.9rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
         }
 
-        /* 3D STADYUM PENALTI OYUNU */
+        /* 3D STADYUM OYUNU */
         .game-container {
             background: linear-gradient(135deg, #14141c, #0d0407);
-            border: 2px solid var(--accent);
-            border-radius: 28px;
-            padding: 40px 30px;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border: 2px solid var(--accent); border-radius: 28px; padding: 40px 30px; max-width: 900px; margin: 0 auto; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
         .stadium-3d-screen {
-            width: 100%;
-            height: 420px;
-            background: radial-gradient(circle at 50% 30%, #1e4d2b 0%, #0d2315 70%);
-            border: 3px solid var(--accent);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
+            width: 100%; height: 420px; background: radial-gradient(circle at 50% 30%, #1e4d2b 0%, #0d2315 70%);
+            border: 3px solid var(--accent); border-radius: 20px; position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 20px;
         }
 
         .stadium-crowd {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 110px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 110px;
             background: linear-gradient(180deg, #09090c 0%, #151520 100%);
-            border-bottom: 2px solid rgba(212,175,55,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 1;
+            border-bottom: 2px solid rgba(212,175,55,0.3); display: flex; justify-content: center; align-items: center; flex-direction: column; z-index: 1;
         }
 
-        .crowd-lights {
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: pulse-light 1.5s infinite alternate;
-        }
-
-        @keyframes pulse-light {
-            0% { opacity: 0.6; text-shadow: 0 0 5px var(--accent); }
-            100% { opacity: 1; text-shadow: 0 0 15px var(--accent); }
-        }
-
-        .crowd-banner {
-            font-size: 1rem;
-            font-weight: 900;
-            color: #fff;
-            background: var(--primary);
-            padding: 3px 15px;
-            border-radius: 6px;
-            border: 1px solid var(--accent);
-            margin-top: 4px;
-        }
+        .crowd-lights { font-size: 0.75rem; color: var(--accent); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; }
+        .crowd-banner { font-size: 1rem; font-weight: 900; color: #fff; background: var(--primary); padding: 3px 15px; border-radius: 6px; border: 1px solid var(--accent); margin-top: 4px; }
 
         .goal-3d {
-            width: 60%;
-            height: 150px;
-            border: 6px solid #fff;
-            border-bottom: none;
-            position: relative;
-            margin-top: 100px;
-            z-index: 2;
-            background: rgba(255,255,255,0.04);
-            box-shadow: 0 0 25px rgba(255,255,255,0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            width: 60%; height: 150px; border: 6px solid #fff; border-bottom: none; position: relative; margin-top: 100px; z-index: 2; background: rgba(255,255,255,0.04); display: flex; justify-content: space-between; align-items: flex-end;
         }
 
         .keeper-3d {
-            position: absolute;
-            top: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 45px;
-            height: 75px;
-            background: linear-gradient(135deg, #38bdf8, #0369a1);
-            border: 2px solid #fff;
-            border-radius: 10px;
-            z-index: 3;
-            transition: left 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            position: absolute; top: 35px; left: 50%; transform: translateX(-50%);
+            width: 45px; height: 75px; background: linear-gradient(135deg, #38bdf8, #0369a1); border: 2px solid #fff; border-radius: 10px; z-index: 3; transition: left 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        .keeper-head {
-            width: 18px; height: 18px; background: #fde047; border-radius: 50%; margin-bottom: 3px;
-        }
+        .keeper-head { width: 18px; height: 18px; background: #fde047; border-radius: 50%; margin-bottom: 3px; }
+        .keeper-body { font-size: 0.65rem; font-weight: 900; color: #fff; }
 
-        .keeper-body {
-            font-size: 0.65rem; font-weight: 900; color: #fff;
-        }
-
-        .target-zone {
-            width: 33.3%;
-            height: 100%;
-            cursor: pointer;
-            z-index: 4;
-            transition: background 0.2s;
-        }
-
-        .target-zone:hover {
-            background: rgba(212, 175, 55, 0.25);
-        }
+        .target-zone { width: 33.3%; height: 100%; cursor: pointer; z-index: 4; }
+        .target-zone:hover { background: rgba(212, 175, 55, 0.25); }
 
         .ball-3d {
-            width: 38px;
-            height: 38px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .game-controls {
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+            width: 38px; height: 38px; background: #fff; border-radius: 50%;
+            position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 5;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.4s ease-in-out;
         }
 
         .shoot-btn {
-            background: linear-gradient(135deg, var(--accent), #b8860b);
-            color: var(--primary-dark);
-            border: none;
-            padding: 12px 24px;
-            font-weight: 900;
-            font-size: 0.95rem;
-            border-radius: 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-            transition: transform 0.2s;
+            background: linear-gradient(135deg, var(--accent), #b8860b); color: var(--primary-dark);
+            border: none; padding: 12px 24px; font-weight: 900; font-size: 0.95rem; border-radius: 20px; cursor: pointer; text-transform: uppercase;
         }
+        .shoot-btn:hover { transform: scale(1.05); background: #fff; }
 
-        .shoot-btn:hover {
-            transform: scale(1.05);
-            background: #fff;
-        }
+        .game-scoreboard { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 20px; }
+        .game-scoreboard span { color: var(--accent); font-size: 1.3rem; }
 
-        .game-scoreboard {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        .game-scoreboard span {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-
-        /* KULÜP FORMALARI VİTRİN ALANI */
+        /* KULÜP FORMALARI VİTRİNİ */
         .kits-container {
             background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(12, 12, 18, 0.98));
-            border: 2px solid var(--accent);
-            border-radius: 30px;
-            padding: 50px 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 0 40px rgba(212, 175, 55, 0.1);
-            position: relative;
-            overflow: hidden;
+            border: 2px solid var(--accent); border-radius: 30px; padding: 50px 30px; max-width: 1100px; margin: 0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.8); position: relative; overflow: hidden;
         }
 
-        .kits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
+        .kits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
 
         .kit-card {
-            background: linear-gradient(145deg, #181216, #0e0709);
-            border: 2px solid rgba(212, 175, 55, 0.4);
-            border-radius: 24px;
-            overflow: hidden;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.7), inset 0 0 20px rgba(212, 175, 55, 0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+            background: linear-gradient(145deg, #181216, #0e0709); border: 2px solid rgba(212, 175, 55, 0.4); border-radius: 24px; overflow: hidden; text-align: center; position: relative; transition: all 0.3s;
         }
-
-        .kit-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: #fff;
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5), inset 0 0 30px rgba(255, 215, 0, 0.2);
-        }
+        .kit-card:hover { transform: translateY(-5px); border-color: #fff; box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4); }
 
         .kit-badge-tag {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(74, 14, 23, 0.9);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-size: 0.72rem;
-            font-weight: 900;
-            padding: 5px 12px;
-            border-radius: 20px;
-            z-index: 10;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: absolute; top: 15px; left: 15px; background: rgba(74, 14, 23, 0.9); border: 1px solid var(--accent); color: var(--accent); font-size: 0.72rem; font-weight: 900; padding: 5px 12px; border-radius: 20px; z-index: 10; text-transform: uppercase;
         }
 
-        .kit-img-container {
-            width: 100%;
-            height: 480px;
-            background: #050507;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .kit-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .kit-card:hover .kit-img-container img {
-            transform: scale(1.06);
-        }
-
-        .kit-info {
-            padding: 25px 20px;
-            background: linear-gradient(to bottom, #120508, #1a080d);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .kit-info h4 {
-            font-size: 1.35rem;
-            margin-bottom: 8px;
-            color: #fff;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-        }
-
-        .kit-info p {
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+        .kit-img-container { width: 100%; height: 480px; background: #050507; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .kit-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .kit-info { padding: 25px 20px; background: linear-gradient(to bottom, #120508, #1a080d); border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .kit-info h4 { font-size: 1.35rem; margin-bottom: 8px; color: #fff; font-weight: 900; }
+        .kit-info p { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
 
         /* Diğer bölümler */
-        .substitutes-section {
-            margin-top: 25px;
-            background: rgba(15, 15, 20, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 16px;
-            padding: 22px;
-            text-align: center;
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .substitutes-section h4 {
-            color: var(--accent);
-            font-size: 1.15rem;
-            margin-bottom: 15px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .sub-list {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .coach-section {
-            margin-top: 20px;
-            text-align: center;
-            background: rgba(212, 175, 55, 0.08);
-            padding: 18px;
-            border-radius: 14px;
-            border: 1px dashed var(--accent);
-            max-width: 820px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .coach-section h4 {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            font-weight: 800;
-        }
-
-        .ballon-container {
-            background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(10, 10, 15, 0.98));
-            border: 2px solid var(--accent);
-            border-radius: 28px;
-            padding: 50px 30px;
-            max-width: 950px;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .ballon-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .ballon-orb {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #FFD700, #B8860B, #4A0E17);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            color: var(--primary-dark);
-            box-shadow: 0 0 35px rgba(255, 215, 0, 0.7);
-        }
-
-        .ballon-header h4 {
-            font-size: 2rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #fff, var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-        }
-
-        .ballon-countdown {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-
-        .b-count-box {
-            background: rgba(7, 7, 9, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 12px;
-            padding: 10px 15px;
-            min-width: 75px;
-            text-align: center;
-        }
-
-        .b-count-box .number {
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: var(--accent);
-        }
-
-        .b-count-box .label {
-            font-size: 0.68rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .vote-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 22px;
-        }
-
-        .vote-card {
-            background: linear-gradient(145deg, rgba(22, 10, 15, 0.92), rgba(12, 12, 18, 0.98));
-            border: 2px solid rgba(212, 175, 55, 0.35);
-            border-radius: 18px;
-            padding: 22px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-
-        .vote-card h5 {
-            font-size: 1.25rem;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .vote-card span {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .progress-bar-bg {
-            width: 100%;
-            height: 12px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 6px;
-            overflow: hidden;
-            margin-bottom: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 6px;
-            width: 25%;
-        }
-
-        .vote-status-text {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .gallery-card {
-            background: var(--card-bg);
-            border: 2px solid var(--accent);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .gallery-img-container {
-            width: 100%;
-            height: 420px;
-            background: #000;
-            overflow: hidden;
-        }
-
-        .gallery-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-info {
-            padding: 25px;
-        }
-
-        .gallery-info h4 {
-            color: var(--accent);
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            padding-bottom: 10px;
-        }
-
-        .gallery-info p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .stats-table-container {
-            background: linear-gradient(135deg, var(--card-bg), var(--primary-dark));
-            border: 2px solid var(--accent);
-            border-radius: 24px;
-            padding: 35px;
-            overflow-x: auto;
-            box-shadow: 0 15px 45px rgba(212, 175, 55, 0.15);
-            max-width: 1050px;
-            margin: 0 auto;
-        }
-
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        .stats-table th {
-            color: var(--accent);
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.95rem;
-            background: rgba(212, 175, 55, 0.08);
-            padding: 18px 22px;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .stats-table td {
-            padding: 18px 22px;
-            font-size: 1rem;
-            color: #fff;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            font-weight: 600;
-        }
-
-        .anthem-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .anthem-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .anthem-card h4 {
-            color: var(--accent);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .anthem-card p {
-            color: var(--text-muted);
-            line-height: 1.8;
-            font-style: italic;
-        }
-
-        .about-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text h4 {
-            color: var(--accent);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-
-        .founder-box {
-            background: rgba(212, 175, 55, 0.05);
-            border-left: 4px solid var(--accent);
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .founder-box span {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .founder-box h5 {
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-        .about-img {
-            width: 100%;
-            height: 350px;
-            background: url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=1000&auto=format&fit=crop') center/cover;
-            border-radius: 12px;
-        }
-
-        .dev-signature {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        footer {
-            background: var(--primary-dark);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            text-align: center;
-            padding: 30px 20px 60px 20px; /* Alttaki LED bant için boşluk bırakıldı */
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        footer span {
-            color: var(--accent);
-            font-weight: 600;
-        }
+        .substitutes-section { margin-top: 25px; background: rgba(15, 15, 20, 0.85); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 16px; padding: 22px; text-align: center; max-width: 820px; margin-left: auto; margin-right: auto; }
+        .substitutes-section h4 { color: var(--accent); font-size: 1.15rem; margin-bottom: 15px; font-weight: 800; text-transform: uppercase; }
+        .sub-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .coach-section { margin-top: 20px; text-align: center; background: rgba(212, 175, 55, 0.08); padding: 18px; border-radius: 14px; border: 1px dashed var(--accent); max-width: 820px; margin-left: auto; margin-right: auto; }
+        .coach-section h4 { color: var(--accent); font-size: 1.1rem; margin-bottom: 5px; font-weight: 800; }
+        .ballon-container { background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(10, 10, 15, 0.98)); border: 2px solid var(--accent); border-radius: 28px; padding: 50px 30px; max-width: 950px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .ballon-header { text-align: center; margin-bottom: 30px; }
+        .ballon-orb { width: 90px; height: 90px; margin: 0 auto 15px; background: linear-gradient(135deg, #FFD700, #B8860B, #4A0E17); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; color: var(--primary-dark); }
+        .ballon-header h4 { font-size: 2rem; font-weight: 900; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; }
+        .ballon-countdown { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; }
+        .b-count-box { background: rgba(7, 7, 9, 0.85); border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 12px; padding: 10px 15px; min-width: 75px; text-align: center; }
+        .b-count-box .number { font-size: 1.35rem; font-weight: 900; color: var(--accent); }
+        .b-count-box .label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; }
+        .vote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+        .vote-card { background: linear-gradient(145deg, rgba(22, 10, 15, 0.92), rgba(12, 12, 18, 0.98)); border: 2px solid rgba(212, 175, 55, 0.35); border-radius: 18px; padding: 22px; text-align: center; }
+        .vote-card h5 { font-size: 1.25rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+        .vote-card span { font-size: 0.8rem; color: var(--accent); font-weight: 700; display: block; margin-bottom: 15px; text-transform: uppercase; }
+        .progress-bar-bg { width: 100%; height: 12px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; margin-bottom: 12px; border: 1px solid rgba(212, 175, 55, 0.15); }
+        .progress-bar-fill { height: 100%; background: linear-gradient(to right, var(--primary), var(--accent)); border-radius: 6px; width: 25%; }
+        .vote-status-text { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .gallery-card { background: var(--card-bg); border: 2px solid var(--accent); border-radius: 20px; overflow: hidden; }
+        .gallery-img-container { width: 100%; height: 420px; background: #000; overflow: hidden; }
+        .gallery-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-info { padding: 25px; }
+        .gallery-info h4 { color: var(--accent); font-size: 1.4rem; font-weight: 900; margin-bottom: 12px; text-transform: uppercase; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 10px; }
+        .gallery-info p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .stats-table-container { background: linear-gradient(135deg, var(--card-bg), var(--primary-dark)); border: 2px solid var(--accent); border-radius: 24px; padding: 35px; overflow-x: auto; max-width: 1050px; margin: 0 auto; }
+        .stats-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .stats-table th { color: var(--accent); font-weight: 800; text-transform: uppercase; font-size: 0.95rem; background: rgba(212, 175, 55, 0.08); padding: 18px 22px; border-bottom: 2px solid rgba(212, 175, 55, 0.3); }
+        .stats-table td { padding: 18px 22px; font-size: 1rem; color: #fff; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-weight: 600; }
+        .anthem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .anthem-card { background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 35px; text-align: center; }
+        .anthem-card h4 { color: var(--accent); font-size: 1.3rem; margin-bottom: 15px; text-transform: uppercase; }
+        .anthem-card p { color: var(--text-muted); line-height: 1.8; font-style: italic; }
+        .about-card { background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .about-text h4 { color: var(--accent); font-size: 1.5rem; margin-bottom: 15px; }
+        .about-text p { color: var(--text-muted); line-height: 1.7; margin-bottom: 15px; }
+        .founder-box { background: rgba(212, 175, 55, 0.05); border-left: 4px solid var(--accent); padding: 15px; margin-top: 20px; border-radius: 0 10px 10px 0; }
+        .founder-box span { display: block; font-size: 0.85rem; color: var(--accent); font-weight: 700; }
+        .founder-box h5 { font-size: 1.1rem; color: #fff; }
+        .about-img { width: 100%; height: 350px; background: url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=1000&auto=format&fit=crop') center/cover; border-radius: 12px; }
+        .dev-signature { margin-top: 25px; padding-top: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2); font-size: 0.9rem; color: var(--accent); font-weight: 600; letter-spacing: 1px; }
+        footer { background: var(--primary-dark); border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center; padding: 30px 20px 60px 20px; color: var(--text-muted); font-size: 0.9rem; }
+        footer span { color: var(--accent); font-weight: 600; }
 
         @media(max-width: 768px) {
-            .about-card, .anthem-grid, .matches-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-content h2 {
-                font-size: 2.3rem;
-            }
-            nav ul {
-                display: none;
-            }
-            .pitch {
-                height: auto;
-                min-height: 620px;
-                padding: 30px 10px;
-            }
-            .row-line {
-                gap: 15px;
-            }
-            .player-node {
-                width: 110px;
-                padding: 8px 8px;
-            }
+            .about-card, .anthem-grid, .matches-grid { grid-template-columns: 1fr; }
+            .hero-content h2 { font-size: 2.3rem; }
+            nav ul { display: none; }
+            .pitch { height: auto; min-height: 620px; padding: 30px 10px; }
+            .row-line { gap: 15px; }
+            .player-node { width: 110px; padding: 8px 8px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Stadyum Canlı LED Kayan Bant (Canavar Modu) -->
+    <!-- Stadyum Canlı LED Kayan Bant (İstediğin Şampiyonluk Sloganlarıyla Güncellendi) -->
     <div class="stadium-led-ticker">
         <div class="led-title">LA SQUADRA CANLI LED</div>
         <div class="led-content">
-            <span>⚡ Kaan yine 90'a taktı!</span>
-            <span>🔥 Hacı ceza sahasında fırtına estiriyor!</span>
-            <span>⚽ Şampiyonluk yolu bizimdir!</span>
-            <span>💪 Forklift Canavarı Ebu sahada basmadık yer bırakmıyor!</span>
-            <span>🏆 La Squadra Arena'ya hoş geldiniz!</span>
+            <span>⭐ LA SQUADRA ŞAMPİYONLUK DEMEKTİR!</span>
+            <span>🔥 BORDO-SIYAH ASİL KAN, SAHADA FIRTINA GİBİ ESTEBAN!</span>
+            <span>⚽ LA SQUADRA ASLA BAŞ EĞMEZ!</span>
+            <span>💪 FORKLİFT CANAVARI EBU SAHADA!</span>
+            <span>🏆 HACI & KAAN İLE ZAFER BİZİMDİR!</span>
+        </div>
+    </div>
+
+    <!-- SAĞ ALT KÖŞE CANLI SOHBET WIDGET BUTONU -->
+    <div class="chat-widget-btn" onclick="toggleChatPopup()" title="Canavar Odasını Aç">
+        <i class="fa-solid fa-comments"></i>
+    </div>
+
+    <!-- SAĞ ALT KÖŞE AÇILIR SOHBET PANELİ -->
+    <div class="chat-popup-container" id="chatPopupBox">
+        <div class="chat-popup-header">
+            CANAVAR ODASI (SOHBET)
+            <div>
+                <span style="margin-right:8px;">🟢 Canlı</span>
+                <button class="chat-popup-close" onclick="toggleChatPopup()">&times;</button>
+            </div>
+        </div>
+        <div class="chat-popup-body" id="chatBox">
+            <div class="chat-msg"><span class="sender">Hacı:</span> Beyler cumartesi günü maçı alıyoruz, hazırlıklar tam gaz! 🔥</div>
+            <div class="chat-msg"><span class="sender">Kaan:</span> 99'luk Trossard gücüyle sol kanadı otoyol yapacağım rahat olun ⚡</div>
+            <div class="chat-msg"><span class="sender">Ebu:</span> Forklift motorları ısındı, orta sahadan geçit yok! 🚜</div>
+        </div>
+        <div class="chat-popup-footer">
+            <input type="text" id="chatName" placeholder="Adın / Lakabın...">
+            <div style="display: flex; gap: 6px;">
+                <input type="text" id="chatText" placeholder="Mesajını yaz..." onkeypress="handleChatKey(event)" style="flex:1;">
+                <button class="shoot-btn" onclick="sendChatMessage()" style="padding: 6px 12px; font-size: 0.8rem;">Gönder</button>
+            </div>
         </div>
     </div>
 
@@ -1581,7 +944,6 @@
                     <li><a href="#mac">Maçlar</a></li>
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#oyun">3D Penaltı</a></li>
-                    <li><a href="#sohbet">Canavar Odası</a></li>
                     <li><a href="#kahin">Kahin Çarkı</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
@@ -1610,7 +972,7 @@
         </div>
         <div class="music-controls">
             <button class="music-btn" onclick="playMusic()"><i class="fa-solid fa-play"></i> Çal</button>
-            <button class="music-btn" onclick="pauseMusic()"><i class="fa-solid fa-pause"></i> Durdurdır</button>
+            <button class="music-btn" onclick="pauseMusic()"><i class="fa-solid fa-pause"></i> Durdur</button>
         </div>
     </div>
 
@@ -1849,28 +1211,6 @@
         </div>
     </section>
 
-    <!-- LA SQUADRA CANAVAR ODASI (CANLI SOHBET) -->
-    <section id="sohbet">
-        <div class="chat-container">
-            <div class="section-title" style="margin-bottom: 20px;">
-                <h3>Canavar <span>Odası (Sohbet)</span></h3>
-                <p>Takım Arkadaşlarınla Anlık Mesajlaş, Stadyum Coşkusunu Paylaş!</p>
-            </div>
-
-            <div class="chat-box" id="chatBox">
-                <div class="chat-msg"><span class="sender">Hacı:</span> Beyler cumartesi günü maçı alıyoruz, hazırlıklar tam gaz! 🔥</div>
-                <div class="chat-msg"><span class="sender">Kaan:</span> 99'luk Trossard gücüyle sol kanadı otoyol yapacağım rahat olun ⚡</div>
-                <div class="chat-msg"><span class="sender">Ebu:</span> Forklift motorları ısındı, orta sahadan geçit yok! 🚜</div>
-            </div>
-
-            <div class="chat-input-group">
-                <input type="text" id="chatName" placeholder="Adın / Lakabın..." style="max-width: 160px;">
-                <input type="text" id="chatText" placeholder="Mesajını yaz ve enter'a bas..." onkeypress="handleChatKey(event)">
-                <button class="shoot-btn" onclick="sendChatMessage()">Gönder</button>
-            </div>
-        </div>
-    </section>
-
     <!-- KAHİN ÇARKI & MAÇ TAHMİN ARENASI -->
     <section id="kahin">
         <div class="prediction-container">
@@ -2030,7 +1370,7 @@
                 <div class="kit-card">
                     <div class="kit-badge-tag">⭐ ÖZMAK SPONSORLU</div>
                     <div class="kit-img-container">
-                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20204746.png" alt="İç Saha Forması Ön Yüz">
+                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20204746.png" alt="Ön Yüz">
                     </div>
                     <div class="kit-info">
                         <h4>İç Saha Forması (Ön Yüz)</h4>
@@ -2041,7 +1381,7 @@
                 <div class="kit-card">
                     <div class="kit-badge-tag">🔥 ŞAMPİYONLAR LİGİ</div>
                     <div class="kit-img-container">
-                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20210255.png" alt="Kaan 19 Sırt Detayı">
+                        <img src="https://raw.githubusercontent.com/gta5kaan1-hub/lasquadra/main/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-11-11%20210255.png" alt="Arka Yüz">
                     </div>
                     <div class="kit-info">
                         <h4>İç Saha Forması (Arka Yüz)</h4>
@@ -2107,6 +1447,16 @@
             document.getElementById('spotName').innerText = name;
             document.getElementById('spotRole').innerText = role;
             document.getElementById('spotDesc').innerText = desc;
+        }
+
+        // Sağ Alt Köşe Sohbet Widget Aç/Kapat
+        function toggleChatPopup() {
+            const box = document.getElementById('chatPopupBox');
+            if (box.style.display === 'flex') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'flex';
+            }
         }
 
         // Canavar Odası / Sohbet Fonksiyonları
