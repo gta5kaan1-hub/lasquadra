@@ -97,14 +97,15 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--text);
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             transition: color 0.3s;
         }
 
@@ -471,7 +472,91 @@
             background: #fff;
         }
 
-        /* IŞIL IŞIL HAREKETLİ HERO VİTRİNİ */
+        /* YENİ ÖZELLİK 1: CANLI MAÇ MERKEZİ (LIVE MATCH CENTER) */
+        .live-match-banner {
+            background: linear-gradient(135deg, #1f050b, #380a13);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 20px 25px;
+            max-width: 1100px;
+            margin: 30px auto;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .live-pulse-badge {
+            background: #ef4444;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            animation: live-blinking 1.5s infinite;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        @keyframes live-blinking {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+        .live-stats-bar {
+            display: flex;
+            gap: 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ddd;
+        }
+        .live-stats-bar span { color: var(--accent); }
+
+        /* YENİ ÖZELLİK 2: HALL OF FAME (EFSANELER MÜZESİ) */
+        .hof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .hof-card {
+            background: linear-gradient(145deg, #181216, #0e0709);
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .hof-card:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(212,175,55,0.4); }
+        .hof-crown { color: var(--accent); font-size: 1.8rem; margin-bottom: 10px; }
+        .hof-card h4 { font-size: 1.25rem; font-weight: 900; color: #fff; margin-bottom: 5px; }
+        .hof-card p { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 15px; }
+        .hof-stats { font-size: 0.82rem; color: var(--text-muted); background: rgba(0,0,0,0.4); padding: 10px; border-radius: 10px; border: 1px solid rgba(212,175,55,0.2); }
+
+        /* YENİ ÖZELLİK 3: DİJİTAL KULÜP MAĞAZASI & KİŞİSELLEŞTİRME */
+        .store-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .store-box {
+            width: 380px; background: linear-gradient(145deg, #1e1418, #0a0406);
+            border: 2px solid var(--accent); border-radius: 24px; padding: 30px; text-align: center;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.6);
+            animation: card-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .store-box h3 { color: var(--accent); font-size: 1.4rem; font-weight: 900; margin-bottom: 15px; }
+        .store-box input, .store-box select {
+            width: 100%; padding: 12px; margin-bottom: 15px; background: #120c0f;
+            border: 1.5px solid var(--accent); color: #fff; border-radius: 10px; font-weight: 700; outline: none;
+        }
+
+        /* HERO VİTRİNİ */
         .hero {
             min-height: 82vh;
             background: 
@@ -1108,7 +1193,7 @@
         .kit-img-container img { width: 100%; height: 100%; object-fit: cover; }
         .kit-info { padding: 25px 20px; background: linear-gradient(to bottom, #120508, #1a080d); border-top: 1px solid rgba(212, 175, 55, 0.2); }
         .kit-info h4 { font-size: 1.35rem; margin-bottom: 8px; color: #fff; font-weight: 900; }
-        .kit-info p { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
+        .kit-info p { color: var(--accent); font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; }
 
         /* Transferler Bölümü */
         .transfer-showcase-grid {
@@ -1326,6 +1411,21 @@
         </div>
     </div>
 
+    <!-- YENİ 1: CANLI MAÇ MERKEZİ BANNERI (HEADER ALTINDA) -->
+    <div style="max-width: 1100px; margin: 80px auto 0; padding: 0 20px;">
+        <div class="live-match-banner">
+            <div>
+                <div class="live-pulse-badge"><i class="fa-solid fa-circle"></i> CANLI MERKEZ</div>
+                <h4 style="font-size: 1.1rem; font-weight: 900; color: #fff; margin-top: 5px;">Haftanın Büyük Maçı Yaklaşıyor!</h4>
+            </div>
+            <div class="live-stats-bar">
+                <div>Topla Oynama: <span>%68 LA SQUADRA</span></div>
+                <div>Şut Hedefi: <span>%99 Trossard</span></div>
+                <div>Moral: <span>Zirvede 🚀</span></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SOL ALT KÖŞE ÇARKIFELEK WIDGET BUTONU -->
     <div class="wheel-widget-btn" onclick="toggleWheelPopup()" title="Kahin Çarkıfeleğini Aç">
         <i class="fa-solid fa-dharmachakra"></i>
@@ -1396,8 +1496,9 @@
                     <li><a href="#taktik">Kadro</a></li>
                     <li><a href="#oyun">3D Penaltı</a></li>
                     <li><a href="#ballon">Ballon d'Or</a></li>
+                    <li><a href="#muze">Müze</a></li>
                     <li><a href="#transferler">Yıldızlar</a></li>
-                    <li><a href="#formalar">Formalar</a></li>
+                    <li><a href="#formalar">Mağaza</a></li>
                     <li><a href="#hakkimizda">Hakkımızda</a></li>
                 </ul>
             </nav>
@@ -1467,6 +1568,27 @@
             </div>
 
             <button class="close-fifa-btn" onclick="closeFifaCard()">Kapat / Sahaya Dön</button>
+        </div>
+    </div>
+
+    <!-- YENİ 3: DİJİTAL MAĞAZA KİŞİSELLEŞTİRME MODALI -->
+    <div class="store-modal" id="storeModal">
+        <div class="store-box">
+            <h3>🛍️ Forma Kişiselleştirme</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">Formana yazılacak ismi ve numarayı seç, siparişini oluştur!</p>
+            
+            <input type="text" id="storeName" placeholder="Formaya Yazılacak İsim (Örn: KAAN)">
+            <input type="number" id="storeNumber" placeholder="Numara (Örn: 19)" min="1" max="99">
+            
+            <select id="storeSize">
+                <option value="S">Beden: S (Standart)</option>
+                <option value="M">Beden: M (Atletik)</option>
+                <option value="L" selected>Beden: L (Efsane Kesim)</option>
+                <option value="XL">Beden: XL (Geniş)</option>
+            </select>
+
+            <button class="shoot-btn" onclick="submitOrder()" style="width: 100%; margin-bottom: 10px;">✅ Siparişi Tamamla</button>
+            <button class="close-fifa-btn" onclick="closeStoreModal()" style="width: 100%; background: #333; color: #fff;">İptal</button>
         </div>
     </div>
 
@@ -1715,6 +1837,44 @@
         </div>
     </section>
 
+    <!-- YENİ 2: HALL OF FAME (EFSANELER MÜZESİ) -->
+    <section id="muze">
+        <div class="section-title">
+            <h3>Hall of Fame <span>Şöhretler Müzesi</span></h3>
+            <p>Kulüp Tarihine Adını Altın Harflerle Yazdıran Efsaneler</p>
+        </div>
+
+        <div class="hof-grid">
+            <div class="hof-card">
+                <div class="hof-crown"><i class="fa-solid fa-crown"></i></div>
+                <h4>Hacı Ramazan ÖZDEMİR</h4>
+                <p>Kurucu Başkan & Forvet</p>
+                <div class="hof-stats">🔥 4 Gol • Liderlik • Unutulmaz Vizyon</div>
+            </div>
+
+            <div class="hof-card">
+                <div class="hof-crown"><i class="fa-solid fa-bolt"></i></div>
+                <h4>Kaan YAKASIZ</h4>
+                <p>Atom Karınca (#19)</p>
+                <div class="hof-stats">⚡ 99 Trossard Gücü • 3 Asist • Sol Otoyol</div>
+            </div>
+
+            <div class="hof-card">
+                <div class="hof-crown"><i class="fa-solid fa-tractor"></i></div>
+                <h4>Ebubekir ŞEN</h4>
+                <p>Forklift Canavarı (#7)</p>
+                <div class="hof-stats">🚜 Orta Saha Dinamosu • Vefakar Efsane</div>
+            </div>
+
+            <div class="hof-card">
+                <div class="hof-crown"><i class="fa-solid fa-star"></i></div>
+                <h4>ÇAY (Leroy Sané)</h4>
+                <p>Takım Kaptanı (#24)</p>
+                <div class="hof-stats">👑 Sağ Kanat Dominatorü • Kaptanlık Ruhu</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Transferler -->
     <section id="transferler">
         <div class="section-title">
@@ -1794,11 +1954,11 @@
         </div>
     </section>
 
-    <!-- KULÜP FORMALARI VİTRİNİ -->
+    <!-- KULÜP FORMALARI VİTRİNİ & DİJİTAL MAĞAZA -->
     <section id="formalar">
         <div class="section-title">
-            <h3>KULÜP <span>FORMALARI</span></h3>
-            <p>Özmak Sponsorluğundaki Efsanevi Tasarımlarımız</p>
+            <h3>KULÜP <span>MAĞAZASI & FORMALAR</span></h3>
+            <p>Özmak Sponsorluğundaki Efsanevi Tasarımlarımızı İncele & Kişiselleştir</p>
         </div>
 
         <div class="kits-container">
@@ -1811,6 +1971,7 @@
                     <div class="kit-info">
                         <h4>İç Saha Forması (Ön Yüz)</h4>
                         <p>Özmak Sponsorlu Özel Altın Çizgili Bordo-Siyah Tasarım</p>
+                        <button class="shoot-btn" onclick="openStoreModal()" style="width: 100%; font-size: 0.85rem; padding: 10px;">🛍️ Formanı Özelleştir & Satın Al</button>
                     </div>
                 </div>
 
@@ -1822,6 +1983,7 @@
                     <div class="kit-info">
                         <h4>İç Saha Forması (Arka Yüz)</h4>
                         <p>Kaan 19 - Şampiyonlar Ligi Detaylı Altın Baskı</p>
+                        <button class="shoot-btn" onclick="openStoreModal()" style="width: 100%; font-size: 0.85rem; padding: 10px;">🛍️ Formanı Özelleştir & Satın Al</button>
                     </div>
                 </div>
             </div>
@@ -1874,6 +2036,29 @@
         }
         function closeFifaCard() {
             document.getElementById('trossardModal').style.display = 'none';
+        }
+
+        function openStoreModal() {
+            document.getElementById('storeModal').style.display = 'flex';
+        }
+        function closeStoreModal() {
+            document.getElementById('storeModal').style.display = 'none';
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('storeName').value.trim();
+            const num = document.getElementById('storeNumber').value.trim();
+            const size = document.getElementById('storeSize').value;
+
+            if (!name || !num) {
+                alert("Lütfen forma ismini ve numarasını doldurun!");
+                return;
+            }
+
+            alert(`🎉 Harika! ${name} #${num} (${size} Beden) kişiselleştirilmiş forma siparişiniz başarıyla alındı! Yönetime iletildi. ⚽`);
+            closeStoreModal();
+            document.getElementById('storeName').value = "";
+            document.getElementById('storeNumber').value = "";
         }
 
         function showPlayerInfo(element, num, name, role, desc) {
