@@ -681,74 +681,113 @@
             margin-bottom: 5px;
         }
 
-        /* Ballon d'Or / Ayın Oyuncusu Oylama Bölümü */
+        /* Ultra Lüks Ballon d'Or Galası ve Parlayan Kupa Tasarımı */
         .ballon-container {
-            background: var(--card-bg);
+            background: linear-gradient(135deg, rgba(26, 8, 14, 0.95), rgba(10, 10, 15, 0.98));
             border: 2px solid var(--accent);
-            border-radius: 24px;
-            padding: 40px;
-            max-width: 900px;
+            border-radius: 28px;
+            padding: 50px 30px;
+            max-width: 950px;
             margin: 0 auto;
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 40px rgba(212, 175, 55, 0.15);
             position: relative;
             overflow: hidden;
         }
 
+        .ballon-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
         .ballon-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            position: relative;
+            z-index: 2;
         }
 
-        .ballon-trophy-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 10px;
-            animation: bounce-slow 2s infinite ease-in-out;
+        .ballon-orb {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #FFD700, #B8860B, #4A0E17);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            box-shadow: 0 0 35px rgba(255, 215, 0, 0.7), inset 0 0 15px rgba(255,255,255,0.6);
+            animation: orb-glow 3s infinite alternate;
         }
 
-        @keyframes bounce-slow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        @keyframes orb-glow {
+            0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(255,255,255,0.4); transform: scale(1); }
+            100% { box-shadow: 0 0 45px rgba(255, 215, 0, 0.9), inset 0 0 20px rgba(255,255,255,0.8); transform: scale(1.05); }
         }
 
         .ballon-header h4 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 900;
-            color: #fff;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .ballon-header p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 5px;
+            font-size: 1rem;
+            margin-top: 8px;
         }
 
         .vote-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+            gap: 22px;
             margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
         }
 
         .vote-card {
-            background: linear-gradient(145deg, rgba(20, 8, 12, 0.9), rgba(10, 10, 14, 0.95));
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
-            padding: 20px;
+            background: linear-gradient(145deg, rgba(22, 10, 15, 0.92), rgba(12, 12, 18, 0.98));
+            border: 2px solid rgba(212, 175, 55, 0.35);
+            border-radius: 18px;
+            padding: 22px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vote-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
         }
 
         .vote-card:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(145deg, rgba(74, 14, 23, 0.4), rgba(15, 15, 22, 0.98));
         }
 
         .vote-card h5 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 900;
             color: #fff;
             margin-bottom: 4px;
@@ -760,51 +799,64 @@
             font-weight: 700;
             display: block;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .progress-bar-bg {
             width: 100%;
-            height: 10px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 5px;
+            height: 12px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 6px;
             overflow: hidden;
             margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
         }
 
         .progress-bar-fill {
             height: 100%;
             background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 5px;
+            border-radius: 6px;
             width: 0%;
-            transition: width 0.6s ease;
+            transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .vote-btn {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #B8860B);
             color: var(--primary-dark);
             border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 800;
+            padding: 11px 20px;
+            border-radius: 30px;
+            font-weight: 900;
             font-size: 0.85rem;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
             width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .vote-btn:hover {
-            transform: scale(1.03);
+            transform: scale(1.04);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
             background: #fff;
         }
 
         .voted-msg {
             text-align: center;
             color: #4ade80;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-top: 15px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-top: 20px;
             display: none;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            padding: 12px;
+            border-radius: 12px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Transfer / Oyuncu Tanıtım Kartları */
@@ -1334,13 +1386,15 @@
         </div>
     </section>
 
-    <!-- Ayın Oyuncusu / Ballon d'Or Oylaması -->
+    <!-- Ayın Oyuncusu / Ballon d'Or Oylaması (Ultra Lüks Tasarım) -->
     <section id="ballon">
         <div class="ballon-container">
             <div class="ballon-header">
-                <div class="ballon-trophy-icon"><i class="fa-solid fa-trophy"></i></div>
-                <h4>Ayın La Squadra Oyuncusu (Ballon d'Or)</h4>
-                <p>Ayın en iyi performans sergileyen efsanesini seçmek için oyunu kullan!</p>
+                <div class="ballon-orb">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <h4>Ayın La Squadra Oyuncusu</h4>
+                <p>Ballon d'Or Ödülü İçin Efsanene Oyunu Ver, Zirveye Taşı!</p>
             </div>
 
             <div class="vote-grid">
@@ -1384,7 +1438,7 @@
                     <button class="vote-btn" onclick="votePlayer('ebu')">Oy Ver (<span id="count-ebu">22</span>)</button>
                 </div>
             </div>
-            <div class="voted-msg" id="votedMsg">🌟 Oyuncu oylaması başarıyla kaydedildi! La Squadra ailesine teşekkürler!</div>
+            <div class="voted-msg" id="votedMsg">🏆 Oylaman başarıyla kaydedildi! Altın Top ödülü sahibine gidiyor!</div>
         </div>
     </section>
 
@@ -1533,7 +1587,7 @@
         <div class="about-card">
             <div class="about-text">
                 <h4>Dostluk ve Hayallerle Başlayan Yolculuk</h4>
-                <p>2026 yılında İstanbul’da kurulan <strong>La Squadra</strong>, sıradan bir futbol takımından çok daha fazlasıdır. Zorluklar ve engeller ne olursa olsun, arkadaşlarını mutlu etmek ve çocukluk hayallerlerini gerçeğe dönüştürmek amacıyla kurulmuştur.</p>
+                <p>2026 yılında İstanbul’da kurulan <strong>La Squadra</strong>, sıradan bir futbol takımından çok daha fazlasıdır. Zorluklar ve engeller ne olursa olsun, arkadaşlarını mutlu etmek ve çocukluk hayallerini gerçeğe dönüştürmek amacıyla kurulmuştur.</p>
                 <p>Biz sahada sadece futbol oynamıyoruz; dostluğu, sadakati ve birlikte mücadele etme ruhunu yaşatıyoruz.</p>
                 
                 <div class="founder-box">
@@ -1582,7 +1636,6 @@
             currentCount++;
             countSpan.innerText = currentCount;
 
-            // Bar genişliklerini güncelle
             updateBars();
 
             document.getElementById('votedMsg').style.display = 'block';
